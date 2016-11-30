@@ -15,7 +15,7 @@ public class Kohteet {
     private double cpDouble, random;
     private int cp, vaikeustaso;
     
-    public void lisääKohde(int vaikeustaso) {
+    public Kohteet(int vaikeustaso) {
         this.vaikeustaso = vaikeustaso;
     }
     
@@ -35,7 +35,13 @@ public class Kohteet {
                 break;
             case 5:
                 cpDouble = laskeRandom(41.0, 50.0);
-                break;              
+                break;
+            case 6:
+                cpDouble = laskeRandom(51.0, 60.0);
+                break;
+            case 7:
+                cpDouble = laskeRandom(61.0, 70.0);
+                break;
         }
         cp = (int)cpDouble;
         return cp;
@@ -62,7 +68,7 @@ public class Kohteet {
     
     
     public String getStats() {
-        return "Nimi: "+nimi+"CP: "+cp+"Vaikeustaso: "+vaikeustaso+"Turvallisuus: "+turvallisuus;
+        return nimi+" | CP "+cp+" | Vaikeustaso "+vaikeustaso+"Turvallisuus: "+turvallisuus;
     }
             
 }

@@ -11,5 +11,8 @@ package model;
  * @author andred
  */
 public class Rikollinen {
-
+    private String nimi;
+    private int maine;
+    private String erikoisuus;
+    
 }

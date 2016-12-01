@@ -5,15 +5,28 @@
  */
 package controller;
 
+import java.util.Arrays;
+import model.Poliisi;
+
 /**
  *
  * @author VStore
  */
 public class Ohjain {
-    
-    public void aloitusvalikko(){
-        System.out.println("\nVaihtoehdot\n");
-        System.out.println("1. something    2. something    3. something");
-        System.out.println("\n4. something    5. something    6. something\n");
-}
+
+    public String aloitusvalikko() {
+        final String[] valikko = {"Vaihtoehdot", "1. Kohteet", "2. Rikollisjengin jäsenet", "3. Rikollisjengin statsit",
+            "4. Välinevarasto", "5. Placeholder", "6. Placeholder"};
+        String arrayInString = Arrays.toString(valikko);
+        String finalArray = arrayInString.replace(",", " | ");
+        String finalArray1 = finalArray.replace("]", "");
+        String finalArray2 = finalArray1.replace("[", "");
+        return finalArray2;
+    }
+
+    public String listPoliisit() {
+        Poliisi poliisi = new Poliisi();
+        return poliisi.toString();
+    }
+
 }

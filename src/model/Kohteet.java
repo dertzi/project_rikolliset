@@ -65,15 +65,33 @@ public class Kohteet {
         return nimi;
     }
     
-    public String getTurvallisuus() {
-        ArrayList<String> kohteenTurvallisuus = new ArrayList<String>();
-        kohteenTurvallisuus.add("Sähköinen turvajärjestelmä");
-        kohteenTurvallisuus.add("Yksityisvartijoita");
-        kohteenTurvallisuus.add("Erikoisvahvistettu kassakaappi");
+    public String getRandomTurvallisuus() {
+        ArrayList<String> mahdTurvallisuus = new ArrayList<String>();
+        mahdTurvallisuus.add("Sähköinen turvajärjestelmä");
+        mahdTurvallisuus.add("Yksityisvartijoita");
+        mahdTurvallisuus.add("Erikoisvahvistettu kassakaappi");
         
-        String turvallisuus = kohteenTurvallisuus.get(new Random().nextInt(kohteenTurvallisuus.size()));
-        return turvallisuus;
+        String RandomTurvallisuus = mahdTurvallisuus.get(new Random().nextInt(mahdTurvallisuus.size()));
+        return RandomTurvallisuus;
     }
+    
+    public void getTurvallisuus(int määrä) {
+        boolean turvaFound;
+        String turva;
+        ArrayList<String> kohteenTurvallisuus = new ArrayList<String>();
+        for(int i = 1; i <= määrä; i++) {
+            do {
+                turva = getRandomTurvallisuus();
+                turvaFound = kohteenTurvallisuus.contains(turva);
+            } while (turvaFound = true);
+            kohteenTurvallisuus.add(turva);        
+        }
+        for (int i = 0; i < kohteenTurvallisuus.size(); i++) {
+            String arvo = kohteenTurvallisuus.get(i);
+            System.out.println(arvo);
+        }
+    }
+
     
     public double laskeRandom(double min, double max) {        
         double minimi = min;
@@ -84,7 +102,7 @@ public class Kohteet {
     
     
     public String getStats() {
-        return nimi+" | CP "+cp+" | Vaikeustaso "+vaikeustaso+"Turvallisuus: "+turvallisuus;
+        return nimi+" | CP "+cp+" | Vaikeustaso "+vaikeustaso;
     }
             
 }

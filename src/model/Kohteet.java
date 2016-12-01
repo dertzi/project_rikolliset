@@ -19,6 +19,12 @@ public class Kohteet {
         this.vaikeustaso = vaikeustaso;
     }
     
+    public Kohteet() {
+        double vaikeusDouble = laskeRandom(1.0, 7.0);
+        vaikeustaso = (int)vaikeusDouble;
+        
+    }
+    
     public double getCp() {
         switch (vaikeustaso) {
             case 1:

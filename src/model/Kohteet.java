@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.Random;
 /**
  *
  * @author Hanne
@@ -54,14 +56,22 @@ public class Kohteet {
     }
     
     public String getNimi() {
-        /*listasta        
-        */
+        ArrayList<String> kohteenNimi = new ArrayList<String>();
+        kohteenNimi.add("Marketti");
+        kohteenNimi.add("Pankki");
+        kohteenNimi.add("Vankila");
+        
+        String nimi = kohteenNimi.get(new Random().nextInt(kohteenNimi.size()));
         return nimi;
     }
     
     public String getTurvallisuus() {
-        /*listasta       
-        */
+        ArrayList<String> kohteenTurvallisuus = new ArrayList<String>();
+        kohteenTurvallisuus.add("Sähköinen turvajärjestelmä");
+        kohteenTurvallisuus.add("Yksityisvartijoita");
+        kohteenTurvallisuus.add("Erikoisvahvistettu kassakaappi");
+        
+        String turvallisuus = kohteenTurvallisuus.get(new Random().nextInt(kohteenTurvallisuus.size()));
         return turvallisuus;
     }
     

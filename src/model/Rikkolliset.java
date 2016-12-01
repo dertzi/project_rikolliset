@@ -8,12 +8,12 @@ public class Rikkolliset {
     private int maine;
     private int raha;
     private final int ALKU_RAHA = 10000;
-    private ArrayList jäsenet;
+    private ArrayList<Rikollinen> jäsenet;
 
     public Rikkolliset() {
         this.combatPower = 0;
         this.maine = 0;
-        this.jäsenet = new ArrayList();
+        this.jäsenet = new ArrayList<>();
         this.raha = ALKU_RAHA;
     }
 

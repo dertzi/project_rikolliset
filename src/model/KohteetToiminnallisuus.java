@@ -6,8 +6,8 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 /**
  *
  * @author Hanne
@@ -15,8 +15,7 @@ import java.util.Random;
 public class KohteetToiminnallisuus {
     
     private String nimi, turvallisuus;
-    private double cpDouble, random;
-    private int cp, vaikeustaso;
+    private int cpInt, cp, vaikeustaso;
     private ArrayList<KohteetToiminnallisuus> kohdeLista = new ArrayList<>();
     
     public KohteetToiminnallisuus(int vaikeustaso) {
@@ -24,17 +23,13 @@ public class KohteetToiminnallisuus {
     }
     
     public KohteetToiminnallisuus() {
-        double vaikeusDouble = laskeRandom(1.0, 7.0);
-        vaikeustaso = (int)vaikeusDouble;
+        int vaikeusInt = laskeRandom(1, 7);
+        vaikeustaso = vaikeusInt;
         
     }
     
     public void setList(KohteetToiminnallisuus kohde){
-        System.out.println(kohde);
-        kohdeLista.add(kohde);
-        System.out.println(kohdeLista);
-        
-        
+        kohdeLista.add(kohde);    
     }
     
     public void setAll(String nimi, String turvallisuus, int cp, int vaikeustaso){
@@ -44,20 +39,51 @@ public class KohteetToiminnallisuus {
         this.vaikeustaso = vaikeustaso;
     }
     
-    public void setNimi(String nimi){
-        this.nimi = nimi;
+    public void setNimiMarketti(){
+        String markettiNimet[] = {"K-market","S-market","Alepa","Siwa","Valintatalo","R-kioski"};
+        nimi = markettiNimet[laskeRandom(0, markettiNimet.length-1)];
     }
+    
+    public void setNimiPankki(){
+        String pankkiNimet[] = {"S-pankki","Danske Bank","Suomen Pankki","Helsingin Osakepankki","Suomen yhdyspankki","Luotto-Pankki"};
+        nimi = pankkiNimet[laskeRandom(0, pankkiNimet.length-1)];
+    }
+    
+    public void setNimiVankila(){
+        String vankilaNimet[] = {"Helsingin vankila","Hämeenlinnan vankila","Riihimäen vankila","Kuopion vankila","Mikkelin vankila","Oulun vankila"};
+        nimi = vankilaNimet[laskeRandom(0, vankilaNimet.length-1)];
+    }
+    
     
     public void setTurvallisuus(String turvallisuus){
         this.turvallisuus = turvallisuus;
     }
     
-    public void setCP(int cp){
-        this.cp = cp;
-    }
-    
-    public void setVaikeustaso(){
-        this.vaikeustaso = vaikeustaso;
+    public void setCP(){
+        switch (vaikeustaso) {
+            case 1:
+                cpInt = laskeRandom(1, 10);
+                break;
+            case 2:
+                cpInt = laskeRandom(11, 20);
+                break;
+            case 3:
+                cpInt = laskeRandom(21, 30);
+                break;
+            case 4:
+                cpInt = laskeRandom(31, 40);
+                break;
+            case 5:
+                cpInt = laskeRandom(41, 50);
+                break;
+            case 6:
+                cpInt = laskeRandom(51, 60);
+                break;
+            case 7:
+                cpInt = laskeRandom(61, 70);
+                break;
+        }
+        cp = cpInt;
     }
     
     public ArrayList getList(){
@@ -65,45 +91,15 @@ public class KohteetToiminnallisuus {
     }
     
     public double getCp() {
-        switch (vaikeustaso) {
-            case 1:
-                cpDouble = laskeRandom(1.0, 10.0);
-                break;
-            case 2:
-                cpDouble = laskeRandom(11.0, 20.0);
-                break;
-            case 3:
-                cpDouble = laskeRandom(21.0, 30.0);
-                break;
-            case 4:
-                cpDouble = laskeRandom(31.0, 40.0);
-                break;
-            case 5:
-                cpDouble = laskeRandom(41.0, 50.0);
-                break;
-            case 6:
-                cpDouble = laskeRandom(51.0, 60.0);
-                break;
-            case 7:
-                cpDouble = laskeRandom(61.0, 70.0);
-                break;
-        }
-        cp = (int)cpDouble;
         return cp;
     }
     
     public String getNimi() {
-        ArrayList<String> kohteenNimi = new ArrayList<String>();
-        kohteenNimi.add("Marketti");
-        kohteenNimi.add("Pankki");
-        kohteenNimi.add("Vankila");
-        
-        String nimi = kohteenNimi.get(new Random().nextInt(kohteenNimi.size()));
         return nimi;
     }
     
     public String getRandomTurvallisuus() {
-        ArrayList<String> mahdTurvallisuus = new ArrayList<String>();
+        ArrayList<String> mahdTurvallisuus = new ArrayList<>();
         mahdTurvallisuus.add("Sähköinen turvajärjestelmä");
         mahdTurvallisuus.add("Yksityisvartijoita");
         mahdTurvallisuus.add("Erikoisvahvistettu kassakaappi");
@@ -115,7 +111,7 @@ public class KohteetToiminnallisuus {
     public void getTurvallisuus(int määrä) {
         boolean turvaFound;
         String turva;
-        ArrayList<String> kohteenTurvallisuus = new ArrayList<String>();
+        ArrayList<String> kohteenTurvallisuus = new ArrayList<>();
         for(int i = 1; i <= määrä; i++) {
             do {
                 turva = getRandomTurvallisuus();
@@ -130,11 +126,11 @@ public class KohteetToiminnallisuus {
     }
 
     
-    public double laskeRandom(double min, double max) {        
-        double minimi = min;
-        double maksimi = max;
-        random = Math.random()*(maksimi-minimi) + minimi;
-        return random;
+    public int laskeRandom(int min, int max) {        
+        int minimi = min;
+        int maksimi = max;
+        int randomVal = ThreadLocalRandom.current().nextInt(minimi, maksimi + 1);
+        return randomVal;
     }
     
   

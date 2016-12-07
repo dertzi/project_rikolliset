@@ -5,6 +5,7 @@
  */
 package Käyttöliittymä;
 
+import java.util.Scanner;
 import model.Rikollinen;
 
 
@@ -13,9 +14,18 @@ import model.Rikollinen;
  * @author VStore
  */
 public class Käyttöliittymä {
+    Scanner lukija = new Scanner(System.in);
 
     public void Näytä(String printti){
         System.out.println(printti);
+    }
+    
+    public String LueString(){
+        return lukija.next();
+    }
+    
+    public int LueInt(){
+        return lukija.nextInt();
     }
     
     public void getRikolliset(Rikollinen rikollinen){

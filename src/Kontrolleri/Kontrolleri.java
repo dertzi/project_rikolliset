@@ -6,7 +6,6 @@
 package Kontrolleri;
 
 import java.util.Arrays;
-import java.util.Scanner;
 import Käyttöliittymä.Käyttöliittymä;
 import model.Kohteet;
 import model.KohdeMarketti;
@@ -20,26 +19,11 @@ import model.KohdeVankila;
 public class Kontrolleri {
 
     public static void main(String[] args) {
-        Scanner lukija = new Scanner(System.in);
         Käyttöliittymä UI = new Käyttöliittymä();
         Kohteet kohde = new Kohteet();
         
-        /* Kohteiden luonti */
-        KohdeMarketti marketti_1 = new KohdeMarketti();
-        KohdePankki pankki_1 = new KohdePankki();
-        KohdeVankila vankila_1 = new KohdeVankila();
-        
-        marketti_1.setAll("K-market", "Vartija", 10, 10);
-        pankki_1.setAll("Nordea", "Vartija x 2", 20, 20);
-        vankila_1.setAll("Vankila", "Vartija x 10", 100, 100);
-        
-        marketti_1.setList(marketti_1);
-        pankki_1.setList(pankki_1);
-        vankila_1.setList(vankila_1);
-        
-        
         /* Monivalintavalikko */
-        final String[] valikko = {"Vaihtoehdot", "1. Kohteet", "2. Rikollisjengin jäsenet", "3. Rikollisjengin statsit",
+        final String[] valikko = {"\nToiminta vaihtoehdot", "1. Kohteet", "2. Rikollisjengin jäsenet", "3. Rikollisjengin statsit",
             "4. Välinevarasto", "5. Placeholder", "6. Placeholder"};
         String arrayInString = Arrays.toString(valikko);
         String finalArray = arrayInString.replace(",", " | ");
@@ -48,19 +32,21 @@ public class Kontrolleri {
 
         /* Simulaation aloitusteksti */
         UI.Näytä("Tervetuloa rikolliset simulaatiopeliin");
-        UI.Näytä("\nTämä simulaatio on diibadaaba...");
+        UI.Näytä("\nTämä simulaatio simuloi rikollismaailman elämää."+"\nSimulaation käyttäjänä pääset ohjaamaan rikollisjengin ryöstöjä ja\n"
+                + "hankkeita tielläsi alamaailman huipulle pahamaineisimpana rikollisorganisaation johtajana.");
         int i = 0;
-        UI.Näytä("\nAloitetaanko simulaatio? (k/e)\n");
-        String valinta = lukija.next();
+        UI.Näytä("\nAloitetaanko simulaatio? (k/e)");
+        String valinta = UI.LueString();
         if (valinta.equals("k") | valinta.equals("K")) {
-            UI.Näytä("Hienoa, lähdetään liikeelle.");
+            UI.Näytä("Hienoa, lähdetään liikeelle.\n");
 
         } else {
+            /* Simulaation aloitus kysymys */
             int j = 0;
             do {
                 UI.Näytä("\nVirheellinen syöte");
                 UI.Näytä("\nAloitetaanko simulaatio? (k/e)\n");
-                String syöte = lukija.next();
+                String syöte = UI.LueString();
                 if (syöte.equals("k") | syöte.equals("K")) {
                     j = 1;
                 }
@@ -71,11 +57,22 @@ public class Kontrolleri {
         do {
             UI.Näytä(finalArray2);
             UI.Näytä("Valinta: ");
-            int valinta2 = lukija.nextInt();
+            int valinta2 = UI.LueInt();
             switch (valinta2) {
                 case 1:
                     UI.Näytä("\nKohteet:\n");
-                    UI.Näytä(kohde.toString());
+                    UI.Näytä("Marketit\n");
+                    for (int j = 0; j < kohde.getMarkettiInt(); j++){
+                        UI.Näytä(kohde.getMarketti(j));
+                    }
+                    UI.Näytä("\nPankit\n");
+                    for (int j = 0; j < kohde.getPankkiInt(); j++){
+                        UI.Näytä(kohde.getPankki(j));
+                    }
+                    UI.Näytä("\nVankilat\n");
+                    for (int j = 0; j < kohde.getVankilaInt(); j++){
+                        UI.Näytä(kohde.getVankila(j));
+                    }
                     break;
                 case 2:
                     UI.Näytä("Tämä tulostaisi pelaajan rikollisjengin jäsenet, "

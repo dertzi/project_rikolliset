@@ -19,10 +19,6 @@ public class Rikkolliset {
         return combatPower;
     }
 
-    public void setCombatPower(int combatPower) {
-        this.combatPower = combatPower;
-    }
-
     public int getMaine() {
         return maine;
     }
@@ -37,14 +33,14 @@ public class Rikkolliset {
 
     public void lisääJäsen(Rikollinen jäsen) {
         jäsenet.add(jäsen);
-        päivitäMaine();
+        päivitäMaineJaCP();
     }
     
-
-    private void päivitäMaine() {
+    private void päivitäMaineJaCP() {
         this.maine = 0;
         for (Rikollinen rikollinen : jäsenet) {
             this.maine += rikollinen.getMaine();
         }
+        this.combatPower = this.maine * 3 / 10;
     }
 }

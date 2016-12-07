@@ -9,6 +9,6 @@ package model;
  *
  * @author Hanne
  */
-public class KohdeVankila extends Kohteet {
+public class KohdeVankila extends KohteetToiminnallisuus {
     
 }

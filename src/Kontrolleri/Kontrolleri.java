@@ -96,3 +96,25 @@ public class Kontrolleri {
         } while (i == 0);
     }
 }
+//************************
+// Tässä MALLIKOODI Kaupan toiminnalle! Tästä puuttuu kauppa tapahtuman keskeyttäminen!
+// ***********************
+//
+//        Rikkolliset jengi = new Rikkolliset();
+//        Kauppa kauppa = new Kauppa();
+//        Scanner lukija = new Scanner(System.in);
+//
+//        while (true) {
+//            System.out.println(kauppa);
+//            System.out.print("Osta rikollinen nro: ");
+//            int syöte = lukija.nextInt();
+//            if (jengi.getRaha() >= kauppa.ostaRikollinen(syöte).getArvo()) {
+//                jengi.lisääJäsen(kauppa.ostaRikollinen(syöte));
+//                jengi.setRaha(jengi.getRaha() - kauppa.ostaRikollinen(syöte).getArvo());
+//                kauppa.päivitäValikoima();
+//            }
+//            else {
+//                System.out.println("Ei riittävästi varaa");
+//            }
+//            System.out.println("Maine: " + jengi.getMaine() + "\nRahat: " + jengi.getRaha() + "\n------------\n");
+//        }

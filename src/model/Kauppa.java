@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.util.ArrayList;
@@ -13,15 +12,16 @@ import java.util.ArrayList;
  * @author andred
  */
 public class Kauppa {
+
     private ArrayList<Rikollinen> valikoima;
-    private final int VALIKOIMAN_KOKO;
-    
+    private int VALIKOIMAN_KOKO;
+
     public Kauppa() {
-       valikoima = new ArrayList<>();
-       VALIKOIMAN_KOKO = 5;
-       
+        valikoima = new ArrayList<>();
+        VALIKOIMAN_KOKO = 5;
+
     }
-    
+
     public void päivitäValikoima() {
         valikoima.clear();
         for (int i = 0; i < VALIKOIMAN_KOKO; i++) {
@@ -29,16 +29,25 @@ public class Kauppa {
         }
     }
     
-    public Rikollinen ostaJäsen(int indeksi) {
-        return valikoima.get(indeksi);
+    public void poistaJäsenValikoimasta(int indeksi){
+        valikoima.remove(indeksi-1);
+        VALIKOIMAN_KOKO -= 1;
+    }
+
+    public int jäsenArvo(int indeksi) {
+        return valikoima.get(indeksi-1).getArvo();
     }
     
-    @Override
-    public String toString() {
-        String valikoimaMerkkijono = "";
-        for (int i = 0; i < VALIKOIMAN_KOKO; i++) {
-            valikoimaMerkkijono += (i + 1) + ". " + valikoima.get(i) + " | Hinta: " + valikoima.get(i).getArvo() + "\n";
-        }
+    public Rikollinen getJäsen(int indeksi){
+        return valikoima.get(indeksi-1);
+    }
+
+    public String toString(int i) {
+        String valikoimaMerkkijono = (i+1) + ". " + valikoima.get(i).getNimi() + " | Hinta: " + valikoima.get(i).getArvo() + "\n";
         return valikoimaMerkkijono;
+    }
+    
+    public int getValikoimanKoko(){
+        return VALIKOIMAN_KOKO;
     }
 }

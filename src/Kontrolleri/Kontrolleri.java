@@ -9,6 +9,7 @@ import java.util.Arrays;
 import Käyttöliittymä.Käyttöliittymä;
 import model.Kohteet;
 import model.Rikolliset;
+import model.Kauppa;
 
 /**
  *
@@ -20,6 +21,8 @@ public class Kontrolleri {
         Käyttöliittymä UI = new Käyttöliittymä();
         Kohteet kohde = new Kohteet();
         Rikolliset rikolliset = new Rikolliset();
+        Kauppa kauppa = new Kauppa();
+        Rikolliset jengi = new Rikolliset();
 
         /* Monivalintavalikko */
         final String[] valikko = {"\nToiminta vaihtoehdot", "1. Kohteet", "2. Rikolliset", "3. Kauppa",
@@ -88,7 +91,32 @@ public class Kontrolleri {
                     }
                     break;
                 case 3:
-                    UI.Näytä("Placeholder");
+                    kauppa.päivitäValikoima();
+                    int kauppaSessio = 0;
+                    while (kauppaSessio == 0) {
+                        for (int j = 0; j < kauppa.getValikoimanKoko(); j++){
+                            UI.Näytä(kauppa.toString(j));
+                        }
+                        UI.Näytä("[Syötteellä '0' pääsee ulos kaupasta]");
+                        UI.Näytä("\nOsta rikollinen nro: ");
+                        int syöte = UI.LueInt();
+                        if (syöte < 1 || syöte > kauppa.getValikoimanKoko()){
+                            if (syöte == 0){
+                                kauppaSessio = 1;
+                                UI.Näytä("\nLähdit kaupasta\n");
+                            }else{
+                            UI.Näytä("\nVirheellinen syöttöarvo\n");
+                            }
+                        }
+                        if (kauppaSessio == 0 && jengi.getRaha() >= kauppa.jäsenArvo(syöte)) {
+                            jengi.lisääJäsen(kauppa.getJäsen(syöte));
+                            jengi.setRaha(jengi.getRaha() - kauppa.jäsenArvo(syöte));
+                            kauppa.poistaJäsenValikoimasta(syöte);
+                        } else if(kauppaSessio == 0 &&  jengi.getRaha() < kauppa.jäsenArvo(syöte)){
+                            UI.Näytä("Ei riittävästi varaa");
+                        }
+                        UI.Näytä("Maine: " + jengi.getMaine() + "\nRahat: " + jengi.getRaha() + "\n------------\n");
+                    }
                     break;
                 case 4:
                     UI.Näytä("Placeholder");
@@ -101,25 +129,3 @@ public class Kontrolleri {
         } while (i == 0);
     }
 }
-//************************
-// Tässä MALLIKOODI Kaupan toiminnalle! Tästä puuttuu kauppa tapahtuman keskeyttäminen!
-// ***********************
-//
-//        Rikkolliset jengi = new Rikkolliset();
-//        Kauppa kauppa = new Kauppa();
-//        Scanner lukija = new Scanner(System.in);
-//
-//        while (true) {
-//            System.out.println(kauppa);
-//            System.out.print("Osta rikollinen nro: ");
-//            int syöte = lukija.nextInt();
-//            if (jengi.getRaha() >= kauppa.ostaRikollinen(syöte).getArvo()) {
-//                jengi.lisääJäsen(kauppa.ostaRikollinen(syöte));
-//                jengi.setRaha(jengi.getRaha() - kauppa.ostaRikollinen(syöte).getArvo());
-//                kauppa.päivitäValikoima();
-//            }
-//            else {
-//                System.out.println("Ei riittävästi varaa");
-//            }
-//            System.out.println("Maine: " + jengi.getMaine() + "\nRahat: " + jengi.getRaha() + "\n------------\n");
-//        }

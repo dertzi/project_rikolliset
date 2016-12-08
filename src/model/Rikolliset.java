@@ -22,6 +22,14 @@ public class Rikolliset {
             jäsenet.add(new Rikollinen());
         }
     }
+    
+    public void setCombatPower(int combatPower) {
+        this.combatPower = combatPower;
+    }
+
+    public void setRaha(int raha){
+        this.raha = raha;
+    }
 
     // Palauttaa merkkijonon rikollisen statseista
     public String getRikolliset(int index) {
@@ -35,10 +43,6 @@ public class Rikolliset {
 
     public int getCombatPower() {
         return combatPower;
-    }
-
-    public void setCombatPower(int combatPower) {
-        this.combatPower = combatPower;
     }
 
     public int getMaine() {

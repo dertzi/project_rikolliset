@@ -14,15 +14,18 @@ import java.util.Scanner;
  */
 public class Käyttöliittymä {
     Scanner lukija = new Scanner(System.in);
-
+    
+    // Perus printti
     public void Näytä(String printti){
         System.out.println(printti);
     }
     
+    // String arvon lukija
     public String LueString(){
         return lukija.next();
     }
     
+    // Int arvon lukija
     public int LueInt(){
         return lukija.nextInt();
     }

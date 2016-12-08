@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Poliisit {
 
+    // Vajavainen luokka (ei ole mitään virkaa tällä hetkellä)
     private int combatPower;
     private ArrayList poliisit;
 

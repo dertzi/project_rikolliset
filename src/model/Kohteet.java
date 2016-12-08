@@ -19,6 +19,7 @@ public class Kohteet {
     private ArrayList<KohdeVankila> vankilat;
     private final int MAKSIMI_PER_KOHDE = 5;
 
+    // kohteiden luominen (konstruktori)
     public Kohteet() {
         marketit = new ArrayList<>();
         pankit = new ArrayList<>();

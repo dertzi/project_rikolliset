@@ -22,22 +22,29 @@ public class Rikolliset {
             jäsenet.add(new Rikollinen());
         }
     }
-    
+
     public void setCombatPower(int combatPower) {
         this.combatPower = combatPower;
     }
 
-    public void setRaha(int raha){
+    public void setRaha(int raha) {
         this.raha = raha;
     }
 
     // Palauttaa merkkijonon rikollisen statseista
     public String getRikolliset(int index) {
-        return jäsenet.get(index).getStats();
+        String nullString = "null";
+        if (jäsenet.get(index).getStats().contains(nullString)) {
+            String fixedString = jäsenet.get(index).getStats().replaceAll("null", "Ei erityisosaamista");
+            return fixedString;
+        } else {
+            return jäsenet.get(index).getStats();
+        }
+
     }
-    
     // Palauttaa rikollisten lukumäärän kontrollerin for-looppia varten
-    public int getRikollisetInt(){
+
+    public int getRikollisetInt() {
         return jäsenet.size();
     }
 
@@ -57,4 +64,5 @@ public class Rikolliset {
         jäsenet.add(jäsen);
 
     }
+
 }

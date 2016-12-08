@@ -13,6 +13,7 @@ import java.util.Random;
  */
 public class Poliisi {
 
+    // Tämä luokka melko vajavainen vielä, pitää kattoa myöhemmin
     private String nimi;
     private final String[] nimet = {"Timo", "Joni", "Kasper", "Pekka", "Jouni", "Kalle", "Pentti"};
     private final Random random;

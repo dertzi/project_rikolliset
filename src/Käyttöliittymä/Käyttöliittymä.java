@@ -6,7 +6,6 @@
 package Käyttöliittymä;
 
 import java.util.Scanner;
-import model.Rikollinen;
 
 
 /**
@@ -28,8 +27,5 @@ public class Käyttöliittymä {
         return lukija.nextInt();
     }
     
-    public void getRikolliset(Rikollinen rikollinen){
-        Näytä(rikollinen.toString());
-    }
 
 }

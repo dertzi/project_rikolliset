@@ -8,7 +8,7 @@ public class Rikollinen {
     private final String nimi;
     private final String erikoisuus;
     private final String[] nimet = {"Jaakko", "Petteri", "Hannu", "Jalmari", "Paha-Poika", "Iso-Paha", "Nyrkki"};
-    private final String[] erikoisuudet = {null, null, null, null, null, null, "Hakkeri", "Pommi expertti", "Muskelimies", "Taikuri", "Munkki", "BattlePappi"};
+    private final String[] erikoisuudet = {null, null, null, null, null, null,"Hakkeri", "Pommi expertti", "Muskelimies", "Taikuri", "Munkki", "BattlePappi"};
     private final Random random;
     
     public Rikollinen() {
@@ -48,8 +48,7 @@ public class Rikollinen {
         return arvo;
     }
     
-    @Override
-    public String toString() {
+    public String getStats() {
         return nimi + " | " + erikoisuus + " | " + maine;
     } 
 }

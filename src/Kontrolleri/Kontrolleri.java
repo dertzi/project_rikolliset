@@ -8,9 +8,7 @@ package Kontrolleri;
 import java.util.Arrays;
 import Käyttöliittymä.Käyttöliittymä;
 import model.Kohteet;
-import model.KohdeMarketti;
-import model.KohdePankki;
-import model.KohdeVankila;
+import model.Rikolliset;
 
 /**
  *
@@ -21,10 +19,11 @@ public class Kontrolleri {
     public static void main(String[] args) {
         Käyttöliittymä UI = new Käyttöliittymä();
         Kohteet kohde = new Kohteet();
-        
+        Rikolliset rikolliset = new Rikolliset();
+
         /* Monivalintavalikko */
-        final String[] valikko = {"\nToiminta vaihtoehdot", "1. Kohteet", "2. Rikollisjengin jäsenet", "3. Rikollisjengin statsit",
-            "4. Välinevarasto", "5. Placeholder", "6. Placeholder"};
+        final String[] valikko = {"\nToiminta vaihtoehdot", "1. Kohteet", "2. Rikolliset", "3. Kauppa",
+            "4. Placeholder", "5. Placeholder", "6. Placeholder"};
         String arrayInString = Arrays.toString(valikko);
         String finalArray = arrayInString.replace(",", " | ");
         String finalArray1 = finalArray.replace("]", "");
@@ -32,7 +31,7 @@ public class Kontrolleri {
 
         /* Simulaation aloitusteksti */
         UI.Näytä("Tervetuloa rikolliset simulaatiopeliin");
-        UI.Näytä("\nTämä simulaatio simuloi rikollismaailman elämää."+"\nSimulaation käyttäjänä pääset ohjaamaan rikollisjengin ryöstöjä ja\n"
+        UI.Näytä("\nTämä simulaatio simuloi rikollismaailman elämää." + "\nSimulaation käyttäjänä pääset ohjaamaan rikollisjengin ryöstöjä ja\n"
                 + "hankkeita tielläsi alamaailman huipulle pahamaineisimpana rikollisorganisaation johtajana.");
         int i = 0;
         UI.Näytä("\nAloitetaanko simulaatio? (k/e)");
@@ -60,33 +59,42 @@ public class Kontrolleri {
             int valinta2 = UI.LueInt();
             switch (valinta2) {
                 case 1:
+                    // Tulostaa kaikki kohteet
                     UI.Näytä("\nKohteet:\n");
                     UI.Näytä("Marketit\n");
-                    for (int j = 0; j < kohde.getMarkettiInt(); j++){
+                    for (int j = 0; j < kohde.getMarkettiInt(); j++) {
                         UI.Näytä(kohde.getMarketti(j));
                     }
                     UI.Näytä("\nPankit\n");
-                    for (int j = 0; j < kohde.getPankkiInt(); j++){
+                    for (int j = 0; j < kohde.getPankkiInt(); j++) {
                         UI.Näytä(kohde.getPankki(j));
                     }
                     UI.Näytä("\nVankilat\n");
-                    for (int j = 0; j < kohde.getVankilaInt(); j++){
+                    for (int j = 0; j < kohde.getVankilaInt(); j++) {
                         UI.Näytä(kohde.getVankila(j));
                     }
                     break;
                 case 2:
-                    UI.Näytä("Tämä tulostaisi pelaajan rikollisjengin jäsenet, "
-                            + " ja jotain tietoa jäsenistä (Special abilities tjms)");
+                    // Tulostaa kaikki rikolliset
+                    UI.Näytä("\nRikolliset:\n");
+                    String nullString = "null";
+                    for (int j = 0; j < rikolliset.getRikollisetInt(); j++) {
+                        if (rikolliset.getRikolliset(j).contains(nullString)) {
+                            String fixedString = rikolliset.getRikolliset(j).replaceAll("null", "Ei erityisosaamista");
+                            UI.Näytä(fixedString);
+                        } else {
+                            UI.Näytä(rikolliset.getRikolliset(j));
+                        }
+                    }
                     break;
                 case 3:
                     UI.Näytä("Placeholder");
-                        break;
+                    break;
                 case 4:
-                    UI.Näytä("Tämä tulostaisi välinevaraston saldo (eli mitä on varastossa"
-                            + " ja mihin hintaan");
+                    UI.Näytä("Placeholder");
                     break;
                 case 0:
-                    UI.Näytä("Jepa");
+                    UI.Näytä("For testing purposes.");
                     break;
 
             }

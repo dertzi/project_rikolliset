@@ -128,3 +128,26 @@ public class Kontrolleri {
         } while (i == 0);
     }
 }
+// Tässä MALLIKAUPPA! tämän pitäisi toimia täysin. Hyvin yksinkertainen. Vaatii muutaman tarkistuksen lisää
+// Koska korjasin kaikki edellisen viikon puuteet takaisin ja poistin ylimääräiset koodit, nykyinen kauppa ei enää toimi!
+// Katso tästä mallia miten luot kaupan kontrolleriin tai sitten voin hoitaa sen itse.
+/**
+        Rikolliset jengi = new Rikolliset();
+        Kauppa kauppa = new Kauppa();
+        Scanner lukija = new Scanner(System.in);
+
+        while (true) {
+            System.out.println(kauppa);
+            System.out.print("Osta rikollinen nro: ");
+            int syöte = lukija.nextInt();
+            if (jengi.getRaha() >= kauppa.ostaRikollinen(syöte).getArvo()) {
+                jengi.lisääJäsen(kauppa.ostaRikollinen(syöte));
+                jengi.setRaha(jengi.getRaha() - kauppa.ostaRikollinen(syöte).getArvo());
+                kauppa.päivitäValikoima();
+            } else {
+                System.out.println("Ei riittävästi varaa");
+            }
+            System.out.println("Maine: " + jengi.getMaine() + "\nCP: " + jengi.getCombatPower() + "\nRahat: " + jengi.getRaha() + "\n------------\n");
+        }
+
+ */

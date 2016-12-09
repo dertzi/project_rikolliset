@@ -1,2 +1,4 @@
 /nbproject/private/
 /dist/
+*.class
+src/model/Testi.java

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Kontrolleri;
 
 import java.util.Arrays;
@@ -10,11 +5,8 @@ import Käyttöliittymä.Käyttöliittymä;
 import model.Kohteet;
 import model.Rikolliset;
 import model.Kauppa;
+import model.Rikollinen;
 
-/**
- *
- * @author andred
- */
 public class Kontrolleri {
 
     public static void main(String[] args) {
@@ -89,18 +81,17 @@ public class Kontrolleri {
                     break;
                 case 2:
                     // Tulostaa kaikki "pelaajan" rikollisisjengin jäsenet
-//                    UI.Näytä("\nRikolliset:\n");
-//                    for (int j = 0; j < rikolliset.getRikollisetInt(); j++) {
-//                        UI.Näytä(rikolliset.getRikolliset(j));
-//                    }
+                    UI.näytäln("\nRikolliset:\n");
+                    for (Rikollinen rikollinen : rikolliset.getJäsenet()) {
+                        UI.näytäln(rikollinen);
+                    }
                     break;
                 case 3:
-                    // TODO: Lisää tarkistus maksimi arvolle (index out of range!)
                     // Kauppa päivittyy kun yksi rikollinen on ostettu.
                     UI.näytäln(kauppa);
                     UI.näytäln("Kenet tahdot ostaa? (Poistu: 0)");
                     UI.näytä("Valinta: ");
-                    // FIX: Tähän tarvitsee virheen tarkistuksen siltä varalta että syöttää korkean arvon tai muuta kuin kokonaislukuja!
+                    
                     int syöte = UI.lueInt();
                     if (syöte == 0) {
                         break;
@@ -116,28 +107,8 @@ public class Kontrolleri {
                         UI.näytäln("Ei riittävästi varaa");
                     }
                     
-                    // Testi tulostus
+                    // TEST tulostus
                     System.out.println("Maine: " + rikolliset.getMaine() + "\nCP: " + rikolliset.getCombatPower() + "\nRahat: " + rikolliset.getRaha() + "\n------------\n");
-                    // Kauppa, päivittyy jokaisella kerralla uuteen valikoimaan random arvoilla
-                    // myös poistaa rikollisen kaupan listalta, mikäli käyttäjä ostaa rikollisen <--- miksi poistaa rikollinen listalta jos se tyhjennetään kuitenkin?
-                    // kuitenkin päivittyy uusi lista kun käyttäjä lähtee kaupasta ja tulee takaisin
-//                    kauppa.päivitäValikoima();
-//                    int kauppaSessio = 0;
-//                    while (kauppaSessio == 0) {
-//                        for (int j = 0; j < kauppa.getValikoimanKoko(); j++) {
-//                            UI.Näytä(kauppa.toString(j));
-//                        }
-//                        UI.Näytä("[Syötteellä '0' pääsee ulos kaupasta]");
-//                        UI.Näytä("\nOsta rikollinen nro: ");
-//                        int syöte = UI.LueInt();
-//                        if (syöte < 1 || syöte > kauppa.getValikoimanKoko()) {
-//                            if (syöte == 0) {
-//                                kauppaSessio = 1;
-//                                UI.Näytä("\nLähdit kaupasta.\n");
-//                            } else {
-//                                UI.Näytä("\nVirheellinen syöttöarvo\n");
-//                            }
-//                        }
                     break;
                 case 4:
                     UI.näytäln("Placeholder");

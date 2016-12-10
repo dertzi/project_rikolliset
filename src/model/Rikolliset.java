@@ -31,6 +31,10 @@ public class Rikolliset {
         return raha;
     }
 
+    public ArrayList<Rikollinen> getJäsenet() {
+        return jäsenet;
+    }
+   
     public void setRaha(int määrä) {
         this.raha = määrä;
     }
@@ -39,7 +43,7 @@ public class Rikolliset {
         jäsenet.add(jäsen);
         päivitäMaineJaCP();
     }
-
+    
     private void päivitäMaineJaCP() {
         this.maine = 0;
         for (Rikollinen rikollinen : jäsenet) {
@@ -56,7 +60,7 @@ public class Rikolliset {
 //public void setCombatPower(int combatPower) {
 //    this.combatPower = combatPower;
 //}
-// Tämä ei kuulu rikkoliset luokkaan. Hoidetaan statsien haku Rikollinen luokkaan
+// Tämä ei kuulu rikkoliset luokkaan. Hoidetaan statsien haku Rikollinen luokan
 // toSring funktiolla, getJäsen kutsulla(?). 
 // Palauttaa merkkijonon rikollisen statseista
 //    public String getRikolliset(int index) {

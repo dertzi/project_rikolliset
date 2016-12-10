@@ -19,7 +19,7 @@ public class Kontrolleri {
         // Tarviiko tämän olla näin monimutkainen? :D
         // Miksi simppeli String ei kelpaa?
         final String[] valikko = {"\nToiminta vaihtoehdot", "1. Kohteet", "2. Rikollisisjengin jäsenet", "3. Kauppa",
-            "4. Poliisit", "5. Placeholder", "6. Lopeta simulaatio\n"};
+            "4. Poliisit", "5. Placeholder", "0. Lopeta simulaatio\n"};
         String arrayInString = Arrays.toString(valikko);
         String finalArray = arrayInString.replace(",", " | ");
         String finalArray1 = finalArray.replace("]", "");
@@ -30,30 +30,31 @@ public class Kontrolleri {
         UI.näytäln("\nTämä simulaatio simuloi rikollismaailman elämää." + "\nSimulaation käyttäjänä pääset ohjaamaan rikollisjengin ryöstöjä ja\n"
                 + "hankkeita tielläsi alamaailman huipulle pahamaineisinpana rikollisorganisaation johtajana.");
 
+        UI.näytäln("\nJatka painamalla enter...");
+        UI.lueString();
+        
+//        String valinta = UI.lueString();
+//
+//        if (valinta.equals("k") | valinta.equals("K")) {
+//            UI.näytäln("Hienoa, lähdetään liikeelle.\n");
+//
+//        } else {
+//            /* Simulaation aloitus kysymys */
+//            int j = 0;
+//            do {
+//                UI.näytäln("\nVirheellinen syöte");
+//                UI.näytäln("\nAloitetaanko simulaatio? (k/e)\n");
+//                String syöte = UI.lueString();
+//                if (syöte.equals("k") | syöte.equals("K")) {
+//                    j = 1;
+//                }
+//            } while (j == 0);
+//
+//        }
+
+        
         // FIX: muutetaan tämä booleaniks ja katsotaan jatketaanko luuppia jos true/false
-        int i = 0;
-
-        // FIX: kyllä/ei tilanne turha? "paina enter aloittaaksesi".
-        // hoidetaan pelin lopettaminen valikon kautta.
-        UI.näytäln("\nAloitetaanko simulaatio? (k/e)");
-        String valinta = UI.lueString();
-
-        if (valinta.equals("k") | valinta.equals("K")) {
-            UI.näytäln("Hienoa, lähdetään liikeelle.\n");
-
-        } else {
-            /* Simulaation aloitus kysymys */
-            int j = 0;
-            do {
-                UI.näytäln("\nVirheellinen syöte");
-                UI.näytäln("\nAloitetaanko simulaatio? (k/e)\n");
-                String syöte = UI.lueString();
-                if (syöte.equals("k") | syöte.equals("K")) {
-                    j = 1;
-                }
-            } while (j == 0);
-
-        }
+        boolean lopetaSimulaatio = false;
 
         /* Peruslooppi */
         do {
@@ -80,7 +81,7 @@ public class Kontrolleri {
                     }
                     break;
                 case 2:
-                    // Tulostaa kaikki "pelaajan" rikollisisjengin jäsenet
+                    // Tulostaa kaikki rikollisisjengin jäsenet
                     UI.näytäln("\nRikolliset:\n");
                     for (Rikollinen rikollinen : rikolliset.getJäsenet()) {
                         UI.näytäln(rikollinen);
@@ -114,10 +115,10 @@ public class Kontrolleri {
                     UI.näytäln("Placeholder");
                     break;
                 case 0:
-                    UI.näytäln("For testing purposes.");
+                    lopetaSimulaatio = true;
                     break;
 
             }
-        } while (i == 0);
+        } while (!lopetaSimulaatio);
     }
 }

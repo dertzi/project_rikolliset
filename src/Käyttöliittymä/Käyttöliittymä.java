@@ -16,7 +16,9 @@ public class Käyttöliittymä {
     Scanner lukija = new Scanner(System.in);
     
     // Perus printti
-    public void näytä(String printti){
+    // Muutin parametrin tyypiksi "Object" Stringin tilalle.
+    // näin pystymme tulostamaan kaikki tyypit (String/kauppa/int/jne jnejne)
+    public void näytä(Object printti) {
         System.out.println(printti);
     }
     

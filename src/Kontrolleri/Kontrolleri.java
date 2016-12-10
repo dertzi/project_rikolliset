@@ -99,8 +99,8 @@ public class Kontrolleri {
                     break;
                 case 3:
                     // Kauppa päivittyy kun yksi rikollinen on ostettu.
-                    System.out.println(kauppa);
-                    System.out.print("Osta rikollinen nro: ");
+                    UI.näytä(kauppa);
+                    UI.näytä("Osta rikollinen nro: ");
                     // FIX: Tähän tarvitsee virheen tarkistuksen siltä varalta että syöttää korkean arvon tai muuta kuin kokonaislukuja!
                     // FIX: Lisää kaupasta poistuminen!
                     int syöte = UI.lueInt();
@@ -132,16 +132,6 @@ public class Kontrolleri {
 //                                UI.Näytä("\nVirheellinen syöttöarvo\n");
 //                            }
 //                        }
-                    // Tarkistetaan, että käyttäjällä on tarpeeksi rahaa oston tekemiseen
-//                        if (kauppaSessio == 0 && rikolliset.getRaha() >= kauppa.jäsenArvo(syöte)) {
-//                            rikolliset.lisääJäsen(kauppa.getJäsen(syöte));
-//                            rikolliset.setRaha(rikolliset.getRaha() - kauppa.jäsenArvo(syöte));
-//                            kauppa.poistaJäsenValikoimasta(syöte);
-//                        } else if (kauppaSessio == 0 && rikolliset.getRaha() < kauppa.jäsenArvo(syöte)) {
-//                            UI.Näytä("Ei riittävästi varaa");
-//                        }
-//                        UI.Näytä("Maine: " + rikolliset.getMaine() + "\nRahat: " + rikolliset.getRaha() + "\n------------\n");
-//                    }
                     break;
                 case 4:
                     UI.näytä("Placeholder");

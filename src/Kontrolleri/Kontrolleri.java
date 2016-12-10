@@ -20,13 +20,14 @@ public class Kontrolleri {
     public static void main(String[] args) {
         Käyttöliittymä UI = new Käyttöliittymä();
         Kohteet kohde = new Kohteet();
-        Rikolliset rikolliset = new Rikolliset();
         Kauppa kauppa = new Kauppa();
-        Rikolliset jengi = new Rikolliset();
-
+        Rikolliset rikolliset = new Rikolliset();
+        
         /* Monivalintavalikko */
+        // Tarviiko tämän olla näin monimutkainen? :D
+        // Miksi simppeli String ei kelpaa?
         final String[] valikko = {"\nToiminta vaihtoehdot", "1. Kohteet", "2. Rikollisisjengin jäsenet", "3. Kauppa",
-            "4. Poliisit", "5. Placeholder", "6. Placeholder"};
+            "4. Poliisit", "5. Placeholder", "6. Lopeta simulaatio"};
         String arrayInString = Arrays.toString(valikko);
         String finalArray = arrayInString.replace(",", " | ");
         String finalArray1 = finalArray.replace("]", "");
@@ -36,9 +37,15 @@ public class Kontrolleri {
         UI.Näytä("Tervetuloa |> RIKOLLISET <| simulaatiopeliin");
         UI.Näytä("\nTämä simulaatio simuloi rikollismaailman elämää." + "\nSimulaation käyttäjänä pääset ohjaamaan rikollisjengin ryöstöjä ja\n"
                 + "hankkeita tielläsi alamaailman huipulle pahamaineisinpana rikollisorganisaation johtajana.");
+        
+        // FIX: muutetaan tämä booleaniks ja katsotaan jatketaanko luuppia jos true/false
         int i = 0;
+         
+        // FIX: kyllä/ei tilanne turha? "paina enter aloittaaksesi".
+        // hoidetaan pelin lopettaminen valikon kautta.
         UI.Näytä("\nAloitetaanko simulaatio? (k/e)");
         String valinta = UI.LueString();
+        
         if (valinta.equals("k") | valinta.equals("K")) {
             UI.Näytä("Hienoa, lähdetään liikeelle.\n");
 
@@ -55,11 +62,16 @@ public class Kontrolleri {
             } while (j == 0);
 
         }
+        
         /* Peruslooppi */
         do {
             // Tähän voisi vaikka tulla joitain perusstatseja, kuten jäsenien määrä tjms (iha printtinä)
             UI.Näytä(finalArray2);
             UI.Näytä("Valinta: ");
+            // FIX: LueInt metodilla ei ole syötteen virheentarkistusta.
+            // Joko LueInt pitää korjata tai sitten käytetään vain lueString ja
+            // arvoina "1", "2" jne. Tällä tavalla ei tarvitse pelätä että ohjelma
+            // kaatuu virheelliseen syötteeseen. switch default palauttaa siis "virheellinen syöttö".
             int valinta2 = UI.LueInt();
             switch (valinta2) {
                 case 1:
@@ -80,42 +92,42 @@ public class Kontrolleri {
                     break;
                 case 2:
                     // Tulostaa kaikki "pelaajan" rikollisisjengin jäsenet
-                    UI.Näytä("\nRikolliset:\n");
-                    for (int j = 0; j < rikolliset.getRikollisetInt(); j++) {
-                        UI.Näytä(rikolliset.getRikolliset(j));
-                    }
+//                    UI.Näytä("\nRikolliset:\n");
+//                    for (int j = 0; j < rikolliset.getRikollisetInt(); j++) {
+//                        UI.Näytä(rikolliset.getRikolliset(j));
+//                    }
                     break;
                 case 3:
                     // Kauppa, päivittyy jokaisella kerralla uuteen valikoimaan random arvoilla
                     // myös poistaa rikollisen kaupan listalta, mikäli käyttäjä ostaa rikollisen
                     // kuitenkin päivittyy uusi lista kun käyttäjä lähtee kaupasta ja tulee takaisin
-                    kauppa.päivitäValikoima();
-                    int kauppaSessio = 0;
-                    while (kauppaSessio == 0) {
-                        for (int j = 0; j < kauppa.getValikoimanKoko(); j++) {
-                            UI.Näytä(kauppa.toString(j));
-                        }
-                        UI.Näytä("[Syötteellä '0' pääsee ulos kaupasta]");
-                        UI.Näytä("\nOsta rikollinen nro: ");
-                        int syöte = UI.LueInt();
-                        if (syöte < 1 || syöte > kauppa.getValikoimanKoko()) {
-                            if (syöte == 0) {
-                                kauppaSessio = 1;
-                                UI.Näytä("\nLähdit kaupasta.\n");
-                            } else {
-                                UI.Näytä("\nVirheellinen syöttöarvo\n");
-                            }
-                        }
+//                    kauppa.päivitäValikoima();
+//                    int kauppaSessio = 0;
+//                    while (kauppaSessio == 0) {
+//                        for (int j = 0; j < kauppa.getValikoimanKoko(); j++) {
+//                            UI.Näytä(kauppa.toString(j));
+//                        }
+//                        UI.Näytä("[Syötteellä '0' pääsee ulos kaupasta]");
+//                        UI.Näytä("\nOsta rikollinen nro: ");
+//                        int syöte = UI.LueInt();
+//                        if (syöte < 1 || syöte > kauppa.getValikoimanKoko()) {
+//                            if (syöte == 0) {
+//                                kauppaSessio = 1;
+//                                UI.Näytä("\nLähdit kaupasta.\n");
+//                            } else {
+//                                UI.Näytä("\nVirheellinen syöttöarvo\n");
+//                            }
+//                        }
                         // Tarkistetaan, että käyttäjällä on tarpeeksi rahaa oston tekemiseen
-                        if (kauppaSessio == 0 && jengi.getRaha() >= kauppa.jäsenArvo(syöte)) {
-                            jengi.lisääJäsen(kauppa.getJäsen(syöte));
-                            jengi.setRaha(jengi.getRaha() - kauppa.jäsenArvo(syöte));
-                            kauppa.poistaJäsenValikoimasta(syöte);
-                        } else if (kauppaSessio == 0 && jengi.getRaha() < kauppa.jäsenArvo(syöte)) {
-                            UI.Näytä("Ei riittävästi varaa");
-                        }
-                        UI.Näytä("Maine: " + jengi.getMaine() + "\nRahat: " + jengi.getRaha() + "\n------------\n");
-                    }
+//                        if (kauppaSessio == 0 && rikolliset.getRaha() >= kauppa.jäsenArvo(syöte)) {
+//                            rikolliset.lisääJäsen(kauppa.getJäsen(syöte));
+//                            rikolliset.setRaha(rikolliset.getRaha() - kauppa.jäsenArvo(syöte));
+//                            kauppa.poistaJäsenValikoimasta(syöte);
+//                        } else if (kauppaSessio == 0 && rikolliset.getRaha() < kauppa.jäsenArvo(syöte)) {
+//                            UI.Näytä("Ei riittävästi varaa");
+//                        }
+//                        UI.Näytä("Maine: " + rikolliset.getMaine() + "\nRahat: " + rikolliset.getRaha() + "\n------------\n");
+//                    }
                     break;
                 case 4:
                     UI.Näytä("Placeholder");

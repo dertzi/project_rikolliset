@@ -69,15 +69,15 @@ public class Kontrolleri {
                     UI.näytäln("\nKohteet:\n");
                     UI.näytäln("Marketit\n");
                     for (int j = 0; j < kohde.getMarkettiInt(); j++) {
-                        UI.näytäln(j + ". " + kohde.getMarketti(j));
+                        UI.näytäln((j+1) + ". " + kohde.getMarketti(j));
                     }
                     UI.näytäln("\nPankit\n");
                     for (int j = 0; j < kohde.getPankkiInt(); j++) {
-                        UI.näytäln(j + ". " + kohde.getPankki(j));
+                        UI.näytäln((j+1) + ". " + kohde.getPankki(j));
                     }
                     UI.näytäln("\nVankilat\n");
                     for (int j = 0; j < kohde.getVankilaInt(); j++) {
-                        UI.näytäln(j + ". " + kohde.getVankila(j));
+                        UI.näytäln((j+1) + ". " + kohde.getVankila(j));
                     }
                     break;
                 case 2:

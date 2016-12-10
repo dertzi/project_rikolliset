@@ -65,7 +65,8 @@ public class Rikollinen {
         return arvo;
     }
 
-    public String getStats() {
+    @Override
+    public String toString() {
         return nimi + " | " + erikoisuus + " | " + maine;
     }
 }

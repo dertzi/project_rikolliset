@@ -16,17 +16,17 @@ public class Käyttöliittymä {
     Scanner lukija = new Scanner(System.in);
     
     // Perus printti
-    public void Näytä(String printti){
+    public void näytä(String printti){
         System.out.println(printti);
     }
     
     // String arvon lukija
-    public String LueString(){
+    public String lueString(){
         return lukija.next();
     }
     
     // Int arvon lukija
-    public int LueInt(){
+    public int lueInt(){
         return lukija.nextInt();
     }
     

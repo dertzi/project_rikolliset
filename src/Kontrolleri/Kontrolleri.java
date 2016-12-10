@@ -101,16 +101,19 @@ public class Kontrolleri {
                     UI.näytäln("Kenet tahdot ostaa? (Poistu: 0)");
                     UI.näytä("Valinta: ");
                     // FIX: Tähän tarvitsee virheen tarkistuksen siltä varalta että syöttää korkean arvon tai muuta kuin kokonaislukuja!
-                    // FIX: Lisää kaupasta poistuminen!
                     int syöte = UI.lueInt();
                     if (syöte == 0) {
                         break;
+                    }
+                    
+                    if (syöte < 1 && syöte > kauppa.getVALIKOIMAN_KOKO()) {
+                        UI.näytäln("Virheellinen valinta!");
                     } else if (rikolliset.getRaha() >= kauppa.ostaRikollinen(syöte).getArvo()) {
                         rikolliset.lisääJäsen(kauppa.ostaRikollinen(syöte));
                         rikolliset.setRaha(rikolliset.getRaha() - kauppa.ostaRikollinen(syöte).getArvo());
                         kauppa.päivitäValikoima();
                     } else {
-                        System.out.println("Ei riittävästi varaa");
+                        UI.näytäln("Ei riittävästi varaa");
                     }
                     
                     // Testi tulostus

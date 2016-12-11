@@ -71,6 +71,21 @@ public class Kontrolleri {
                                 // funktiossa sitten toiminta että miten kohde ja jengi muuttuu jos
                                 // hyökkäys onnistuu tai epäonnistuu.
                                 // ESIM: hyökkää(kohde.pankit.get(i))?
+                                
+                                // Hyökkäyksen toiminnallisuus:
+                                // Eli kohteen turva lisää kohteen CPseen vaikka 20% pohja CPstä. Jos jengillä on
+                                // sitä turvaa vastaava erikoisuus, se kumoaa sen turvallisuuden/CPn.
+                                // Hyökkäyksessä verrataan jengin ja kohteen CPn suhdetta toisiinsa
+                                // esim: Jengi cp: 1000 ja kaupan CP on 500 niin olkoon siinä tapauksessa
+                                // todennäköisyys onnistua hyökkäyksessä (1000J_CP-500K_CP) / 25 = 20 eli 20% mahdollisuus onnistua?
+                                // Jos hyökkäys epäonnistuu: Jokaisen jäsenen kohdalla 15% mahdollisuus "kuolla"
+                                // Kohteen tilanne (CP/Rahat) pysyy samana.
+                                // Jos hyökkäys onnistuu: Jokaisen jäsenen kohdalla 4% mahdollisuus "kuolla" ja
+                                // 65%-100% osuus kohteen rahoista. Kohteen vaikeustaso nousee (lisää rahaa, cp, turvallisuutta)
+                                // 
+                                // Missä poliisit? Mites jos tehdään niin että poliisit tulevat peliin kun maine nousee n. 10000 hujakoille?
+                                // Poliisit tekevät satunnaisia ratsioita jengin kimppuun aina loopin lopussa. Ratsiat voivat aiheuttaa rahan menetystä
+                                // ja jengin menetystä. Poliisiasemalle tehty onnistunut hyökkäys estää poliiseja toimimasta n 5-10 erän ajaksi.
                             }
                             
                             break;

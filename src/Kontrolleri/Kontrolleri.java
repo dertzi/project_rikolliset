@@ -1,11 +1,9 @@
 package Kontrolleri;
 
-import java.util.Arrays;
 import Käyttöliittymä.Käyttöliittymä;
 import model.Kohteet;
 import model.Rikolliset;
 import model.Kauppa;
-import model.Rikollinen;
 
 public class Kontrolleri {
 
@@ -18,99 +16,62 @@ public class Kontrolleri {
         String syöteString;
 
         /* Monivalintavalikko */
-        // Tarviiko tämän olla näin monimutkainen? :D
-        // Miksi simppeli String ei kelpaa?
-        final String[] valikko = {"\nToiminta vaihtoehdot", "1. Kohteet", "2. Rikollisjengin tiedot", "3. Kauppa",
-            "4. Poliisit", "5. Placeholder", "0. Lopeta simulaatio\n"};
-        String arrayInString = Arrays.toString(valikko);
-        String finalArray = arrayInString.replace(",", " | ");
-        String finalArray1 = finalArray.replace("]", "");
-        String finalArray2 = finalArray1.replace("[", "");
+        final String valikko = "\nToiminta vaihtoehdot | 1. Kohteet "
+                + "| 2. Rikollisjengin tiedot | 3. Kauppa | 4. Poliisit "
+                + "| 5. Placeholder | 0. Lopeta simulaatio";
 
         /* Simulaation aloitusteksti */
         UI.näytäln("Tervetuloa |> RIKOLLISET <| simulaatiopeliin");
         UI.näytäln("\nTämä simulaatio simuloi rikollismaailman elämää." + "\nSimulaation käyttäjänä pääset ohjaamaan rikollisjengin ryöstöjä ja\n"
                 + "hankkeita tielläsi alamaailman huipulle pahamaineisinpana rikollisorganisaation johtajana.");
 
-        UI.näytäln("\nJatka painamalla enter...");
+        UI.näytä("\nJatka painamalla enter...");
         UI.lueString();
-
-//        String valinta = UI.lueString();
-//
-//        if (valinta.equals("k") | valinta.equals("K")) {
-//            UI.näytäln("Hienoa, lähdetään liikeelle.\n");
-//
-//        } else {
-//            /* Simulaation aloitus kysymys */
-//            int j = 0;
-//            do {
-//                UI.näytäln("\nVirheellinen syöte");
-//                UI.näytäln("\nAloitetaanko simulaatio? (k/e)\n");
-//                String syöte = UI.lueString();
-//                if (syöte.equals("k") | syöte.equals("K")) {
-//                    j = 1;
-//                }
-//            } while (j == 0);
-//
-//        }
-        // FIX: muutetaan tämä booleaniks ja katsotaan jatketaanko luuppia jos true/false
+        UI.clear();
         boolean lopetaSimulaatio = false;
 
         /* Peruslooppi */
         do {
             // Tähän voisi vaikka tulla joitain perusstatseja, kuten jäsenien määrä tjms (iha printtinä)
-            UI.näytäln(finalArray2);
+            UI.näytäln(valikko);
             UI.näytä("Valinta: ");
-
             syöteInt = UI.lueInt();
+            UI.clear();
+
             switch (syöteInt) {
                 // Tulostaa valikon pääkohteista
                 case 1:
-                    UI.näytäln("1. Pankit | 2. Marketit | 3. Vankilat");
+                    UI.näytäln("1. Pankit | 2. Marketit | 3. Vankilat | 4. Kaikki | 0. Poistu kaupasta");
                     UI.näytä("Valinta: ");
                     syöteInt = UI.lueInt();
+                    UI.clear();
                     switch (syöteInt) {
-                        // Tulostaa marketti kohteet
+                        // Tulostaa pankki kohteet
                         case 1:
-                            UI.näytäln("Marketit\n");
-                            for (int i = 0; i < kohde.getMarkettiInt(); i++) {
-                                UI.näytäln((i + 1) + ". " + kohde.getMarketti(i));
-                            }
+                            UI.näytäln("\nPankit:");
+                            UI.näytäln(kohde.toString("pankit"));
                             UI.näytä("Valinta: ");
                             break;
-                        // Tulostaa pankki kohteet
+                        // Tulostaa marketti kohteet
                         case 2:
-                            UI.näytäln("\nPankit\n");
-                            for (int i = 0; i < kohde.getPankkiInt(); i++) {
-                                UI.näytäln((i + 1) + ". " + kohde.getPankki(i));
-                            }
+                            UI.näytäln("\nMarketit:");
+                            UI.näytäln(kohde.toString("marketit"));
+                            UI.näytä("Valinta: ");
                             break;
                         // Tulostaa vankila kohteet
                         case 3:
-                            UI.näytäln("\nVankilat\n");
-                            for (int i = 0; i < kohde.getVankilaInt(); i++) {
-                                UI.näytäln((i + 1) + ". " + kohde.getVankila(i));
-                            }
+                            UI.näytäln("\nVankilat:");
+                            UI.näytäln(kohde.toString("vankilat"));
+                            UI.näytä("Valinta: ");
                             break;
+                        case 4:
+                            // Tulostaa kaikki kohteet
+                            UI.näytäln(kohde.toString("kaikki"));
                         case 0:
                             break;
                         default:
-                            UI.näytäln("Kohdetta ei löytynyt.");
+                            UI.näytäln("Valintaa ei löytynyt");
                             break;
-                    }
-                    // Tulostaa kaikki kohteet
-                    UI.näytäln("\nKohteet:\n");
-                    UI.näytäln("Marketit\n");
-                    for (int i = 0; i < kohde.getMarkettiInt(); i++) {
-                        UI.näytäln((i + 1) + ". " + kohde.getMarketti(i));
-                    }
-                    UI.näytäln("\nPankit\n");
-                    for (int i = 0; i < kohde.getPankkiInt(); i++) {
-                        UI.näytäln((i + 1) + ". " + kohde.getPankki(i));
-                    }
-                    UI.näytäln("\nVankilat\n");
-                    for (int i = 0; i < kohde.getVankilaInt(); i++) {
-                        UI.näytäln((i + 1) + ". " + kohde.getVankila(i));
                     }
                     break;
                 case 2:

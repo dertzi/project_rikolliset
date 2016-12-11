@@ -139,7 +139,8 @@ public class KohteetToiminnallisuus {
         return randomVal;
     }
 
-    public String getStats() {
+    @Override
+    public String toString() {
         return nimi + " | CP " + cp + " | Vaikeustaso " + vaikeustaso;
     }
 

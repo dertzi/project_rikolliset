@@ -32,4 +32,10 @@ public class Käyttöliittymä {
         return lukija.nextInt();
     }
     
+    //"Pyyhkii" konsoli ikkunan
+    public void clear() {
+        for (int i = 0; i < 40; i++) {
+            System.out.println();
+        }
+    }
 }

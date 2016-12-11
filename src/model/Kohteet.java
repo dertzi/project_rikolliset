@@ -20,45 +20,70 @@ public class Kohteet {
             pankit.add(new KohdePankki());
             vankilat.add(new KohdeVankila());
         }
-        for (int k = 0 ; k < MAKSIMI_PER_KOHDE; k++){
+        for (int k = 0; k < MAKSIMI_PER_KOHDE; k++) {
             marketit.get(k).setNimiMarketti();
             marketit.get(k).setCP();
-            
+
             pankit.get(k).setNimiPankki();
             pankit.get(k).setCP();
-            
+
             vankilat.get(k).setNimiVankila();
             vankilat.get(k).setCP();
         }
     }
-    
-    public int getMarkettiInt(){
-        return marketit.size();
+
+    public int getMAKSIMI_PER_KOHDE() {
+        return MAKSIMI_PER_KOHDE;
     }
-    
-    public int getPankkiInt(){
-        return pankit.size();
+
+    public String getMarketitString() {
+        String merkkijono = "";
+        for (int i = 0; i < marketit.size(); i++) {
+            merkkijono += (i + 1) + ". " + marketit.get(i) + "\n";
+        }
+        return merkkijono;
     }
-    
-    public int getVankilaInt(){
-        return vankilat.size();
+
+    public String getPankitString() {
+        String merkkijono = "";
+        for (int i = 0; i < pankit.size(); i++) {
+            merkkijono += (i + 1) + ". " + pankit.get(i) + "\n";
+        }
+        return merkkijono;
     }
-    
-    public String getMarketti(int numero) {
-        return marketit.get(numero).getStats();
-    }
-    
-    public String getPankki(int numero){
-        return pankit.get(numero).getStats();
-    }
-    
-    public String getVankila(int numero){
-        return vankilat.get(numero).getStats();
+
+    public String getVankilatString() {
+        String merkkijono = "";
+        for (int i = 0; i < vankilat.size(); i++) {
+            merkkijono += (i + 1) + ". " + vankilat.get(i) + "\n";
+        }
+        return merkkijono;
     }
 
     @Override
     public String toString() {
-        return marketit.get(0).getNimi() + ", " + marketit.get(0).getRandomTurvallisuus();
+        return this.toString("kaikki");
+    }
+
+    public String toString(String kohde) {
+        String merkkijono;
+        switch (kohde) {
+            case "marketit":
+                merkkijono = getMarketitString() + "\n";
+                break;
+            case "pankit":
+                merkkijono = getPankitString() + "\n";
+                break;
+            case "vankilat":
+                merkkijono = getVankilatString() + "\n";
+                break;
+            case "kaikki":
+                merkkijono = "\nMarketit:\n" + getMarketitString() + "\nPankit:\n" + getPankitString() +"\nVankilat:\n" + getVankilatString();
+                break;
+            default:
+                merkkijono = "Koodaaja mokasi!";
+        }
+        return merkkijono;
     }
 
 }

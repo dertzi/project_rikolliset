@@ -22,7 +22,8 @@ public class Kontrolleri {
 
         /* Simulaation aloitusteksti */
         UI.näytäln("Tervetuloa |> RIKOLLISET <| simulaatiopeliin");
-        UI.näytäln("\nTämä simulaatio simuloi rikollismaailman elämää." + "\nSimulaation käyttäjänä pääset ohjaamaan rikollisjengin ryöstöjä ja\n"
+        UI.näytäln("\nTämä simulaatio simuloi rikollismaailman elämää."
+                + "\nSimulaation käyttäjänä pääset ohjaamaan rikollisjengin ryöstöjä ja\n"
                 + "hankkeita tielläsi alamaailman huipulle pahamaineisinpana rikollisorganisaation johtajana.");
 
         UI.näytä("\nJatka painamalla enter...");
@@ -32,7 +33,8 @@ public class Kontrolleri {
 
         /* Peruslooppi */
         do {
-            // Tähän voisi vaikka tulla joitain perusstatseja, kuten jäsenien määrä tjms (iha printtinä)
+            // TODO: Statsit näkyvät nyt. Tämän voisi päivittää myös näyttämään nykyiset erikoisuudet, jäsenien määrän jne.
+            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + "\n");
             UI.näytäln(valikko);
             UI.näytä("Valinta: ");
             syöteInt = UI.lueInt();
@@ -41,7 +43,7 @@ public class Kontrolleri {
             switch (syöteInt) {
                 // Tulostaa valikon pääkohteista
                 case 1:
-                    UI.näytäln("1. Pankit | 2. Marketit | 3. Vankilat | 4. Kaikki | 0. Poistu kaupasta");
+                    UI.näytäln("1. Pankit | 2. Marketit | 3. Vankilat | 4. Kaikki | 0. Poistu");
                     UI.näytä("Valinta: ");
                     syöteInt = UI.lueInt();
                     UI.clear();
@@ -49,19 +51,41 @@ public class Kontrolleri {
                         // Tulostaa pankki kohteet
                         case 1:
                             UI.näytäln("\nPankit:");
-                            UI.näytäln(kohde.toString("pankit"));
+                            UI.näytä(kohde.toString("pankit"));
+                            UI.näytäln("0. Poistu");
                             UI.näytä("Valinta: ");
+                            syöteInt = UI.lueInt();
+                            UI.clear();
+                            
+                            if (syöteInt == 0) {
+                                break;
+                            }
+                            
+                            if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.näytäln("Virheellinen valinta");
+                                break;
+                            } else {
+                                // TÄSSÄ HYÖKÄTÄÄN KOHTEESEEN
+                                // KUTSU kontrollerissa luotuun funktioon parametrina
+                                // valittu kohde. Hyökkäys joko onnistuu tai epäonnistuu.
+                                // funktiossa sitten toiminta että miten kohde ja jengi muuttuu jos
+                                // hyökkäys onnistuu tai epäonnistuu.
+                                // ESIM: hyökkää(kohde.pankit.get(i))?
+                            }
+                            
                             break;
                         // Tulostaa marketti kohteet
                         case 2:
                             UI.näytäln("\nMarketit:");
-                            UI.näytäln(kohde.toString("marketit"));
+                            UI.näytä(kohde.toString("marketit"));
+                            UI.näytäln("0. Poistu");
                             UI.näytä("Valinta: ");
                             break;
                         // Tulostaa vankila kohteet
                         case 3:
                             UI.näytäln("\nVankilat:");
-                            UI.näytäln(kohde.toString("vankilat"));
+                            UI.näytä(kohde.toString("vankilat"));
+                            UI.näytäln("0. Poistu");
                             UI.näytä("Valinta: ");
                             break;
                         case 4:

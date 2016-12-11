@@ -34,7 +34,7 @@ public class Rikolliset {
     public ArrayList<Rikollinen> getJäsenet() {
         return jäsenet;
     }
-   
+
     public void setRaha(int määrä) {
         this.raha = määrä;
     }
@@ -43,13 +43,26 @@ public class Rikolliset {
         jäsenet.add(jäsen);
         päivitäMaineJaCP();
     }
-    
+
     private void päivitäMaineJaCP() {
         this.maine = 0;
         for (Rikollinen rikollinen : jäsenet) {
             this.maine += rikollinen.getMaine();
         }
         this.combatPower = this.maine * 3 / 10;
+    }
+    
+    public String perusTiedot() {
+        return "Jäseniä: " + jäsenet.size() + " | Maine: " + maine + " | CP: " + combatPower + " | Rahaa: " + raha + "\n";
+    }
+    
+    @Override
+    public String toString() {
+        String jäsenetMerkkijono = perusTiedot();
+        for (int i = 0; i < jäsenet.size(); i++) {
+            jäsenetMerkkijono += (i + 1) + ". " + jäsenet.get(i) + " | Hinta: " + jäsenet.get(i).getArvo() + "\n";
+        }
+        return jäsenetMerkkijono;
     }
 }
 

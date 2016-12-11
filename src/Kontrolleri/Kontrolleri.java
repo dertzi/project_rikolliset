@@ -80,27 +80,30 @@ public class Kontrolleri {
                     break;
                 case 3:
                     // Kauppa päivittyy kun yksi rikollinen on ostettu.
+                    UI.näytäln("Tervetuloa kauppaan!\nValikoimamme päivittyvät jokaisen oston jälkeen, joten mieti tarkkaan mitä tarvitset!\n\n");
+                    UI.näytäln("# | Nimi | Erikoisuus | Maine | Hinta");
                     UI.näytäln(kauppa);
-                    UI.näytäln("Kenet tahdot ostaa? (Poistu: 0)");
+                    UI.näytäln("Jengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha());
+                    UI.näytäln("\nKenet tahdot ostaa? (Poistu: 0)");
                     UI.näytä("Valinta: ");
 
                     int syöte = UI.lueInt();
+                    UI.clear();
                     if (syöte == 0) {
                         break;
                     }
 
-                    if (syöte < 1 && syöte > kauppa.getVALIKOIMAN_KOKO()) {
+                    if (syöte < 1 || syöte > kauppa.getVALIKOIMAN_KOKO()) {
                         UI.näytäln("Virheellinen valinta!");
                     } else if (rikolliset.getRaha() >= kauppa.ostaRikollinen(syöte).getArvo()) {
                         rikolliset.lisääJäsen(kauppa.ostaRikollinen(syöte));
                         rikolliset.setRaha(rikolliset.getRaha() - kauppa.ostaRikollinen(syöte).getArvo());
                         kauppa.päivitäValikoima();
+                        UI.näytäln("Uusi rikollinen liittyi jengiin!");
                     } else {
-                        UI.näytäln("Ei riittävästi varaa");
+                        UI.näytäln("Ei riittävästi varaa!");
                     }
 
-                    // TEST tulostus
-                    System.out.println("Maine: " + rikolliset.getMaine() + "\nCP: " + rikolliset.getCombatPower() + "\nRahat: " + rikolliset.getRaha() + "\n------------\n");
                     break;
                 case 4:
                     UI.näytäln("Placeholder");

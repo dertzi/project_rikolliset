@@ -4,6 +4,8 @@ import Käyttöliittymä.Käyttöliittymä;
 import model.Kohteet;
 import model.Rikolliset;
 import model.Kauppa;
+import model.Poliisit;
+import model.Vankila;
 
 public class Kontrolleri {
 
@@ -12,13 +14,15 @@ public class Kontrolleri {
         Kohteet kohde = new Kohteet();
         Kauppa kauppa = new Kauppa();
         Rikolliset rikolliset = new Rikolliset();
+        Poliisit poliisit = new Poliisit();
         int syöteInt;
-        String syöteString;
+        Vankila vankila = new Vankila();
+
 
         /* Monivalintavalikko */
         final String valikko = "\nToiminta vaihtoehdot | 1. Kohteet "
                 + "| 2. Rikollisjengin tiedot | 3. Kauppa | 4. Poliisit "
-                + "| 5. Placeholder | 0. Lopeta simulaatio";
+                + "| 0. Lopeta simulaatio";
 
         /* Simulaation aloitusteksti */
         UI.näytäln("Tervetuloa |> RIKOLLISET <| simulaatiopeliin");
@@ -35,6 +39,10 @@ public class Kontrolleri {
         do {
             // TODO: Statsit näkyvät nyt. Tämän voisi päivittää myös näyttämään nykyiset erikoisuudet, jäsenien määrän jne.
             UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + "\n");
+            if (!vankila.getRikolliset().isEmpty()) {
+                UI.näytäln("Vankila: ");
+                UI.näytäln(vankila.toString());
+            }
             UI.näytäln(valikko);
             UI.näytä("Valinta: ");
             syöteInt = UI.lueInt();
@@ -56,11 +64,11 @@ public class Kontrolleri {
                             UI.näytä("Valinta: ");
                             syöteInt = UI.lueInt();
                             UI.clear();
-                            
+
                             if (syöteInt == 0) {
                                 break;
                             }
-                            
+
                             if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
                                 UI.näytäln("Virheellinen valinta");
                                 break;
@@ -71,7 +79,7 @@ public class Kontrolleri {
                                 // funktiossa sitten toiminta että miten kohde ja jengi muuttuu jos
                                 // hyökkäys onnistuu tai epäonnistuu.
                                 // ESIM: hyökkää(kohde.pankit.get(i))?
-                                
+
                                 // Hyökkäyksen toiminnallisuus:
                                 // Eli kohteen turva lisää kohteen CPseen vaikka 20% pohja CPstä. Jos jengillä on
                                 // sitä turvaa vastaava erikoisuus, se kumoaa sen turvallisuuden/CPn.
@@ -87,7 +95,7 @@ public class Kontrolleri {
                                 // Poliisit tekevät satunnaisia ratsioita jengin kimppuun aina loopin lopussa. Ratsiat voivat aiheuttaa rahan menetystä
                                 // ja jengin menetystä. Poliisiasemalle tehty onnistunut hyökkäys estää poliiseja toimimasta n 5-10 erän ajaksi.
                             }
-                            
+
                             break;
                         // Tulostaa marketti kohteet
                         case 2:
@@ -115,13 +123,14 @@ public class Kontrolleri {
                     break;
                 case 2:
                     // Tulostaa kaikki rikollisisjengin tiedot
-                    UI.näytäln(rikolliset);
+                    UI.näytäln(rikolliset.toString());
                     break;
                 case 3:
                     // Kauppa päivittyy kun yksi rikollinen on ostettu.
                     UI.näytäln("Tervetuloa kauppaan!\nValikoimamme päivittyvät jokaisen oston jälkeen, joten mieti tarkkaan mitä tarvitset!\n\n");
                     UI.näytäln("# | Nimi | Erikoisuus | Maine | Hinta");
                     UI.näytäln(kauppa);
+
                     UI.näytäln("Jengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha());
                     UI.näytäln("\nKenet tahdot ostaa? (Poistu: 0)");
                     UI.näytä("Valinta: ");
@@ -145,13 +154,16 @@ public class Kontrolleri {
 
                     break;
                 case 4:
-                    UI.näytäln("Placeholder");
+                    UI.näytäln("Poliisit");
                     break;
                 case 0:
                     lopetaSimulaatio = true;
                     break;
 
             }
+            vankila.vankilaTimer();
+            UI.näytäln(poliisit.ratsia(rikolliset, vankila));
+
         } while (!lopetaSimulaatio);
     }
 }

@@ -39,7 +39,7 @@ public class KohteetToiminnallisuus {
         this.cp = cp;
         this.vaikeustaso = vaikeustaso;
     }
-    // Käytetäänkö oikeita kauppojen, pankkien ja vankiloiden nimiä? Vai onko huonossa maussa?
+    
     // metodit arpoo merkkijono listasta satunnaisen nimen itselleen
     public void setNimiMarketti() {
         String markettiNimet[] = {"K-market", "S-market", "Alepa", "Siwa", "Valintatalo", "R-kioski", "Lidl", "Apteekki", "Stockmann", "Tokmanni", "Prisma", "Citymarket",

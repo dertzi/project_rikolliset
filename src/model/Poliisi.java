@@ -15,10 +15,13 @@ public class Poliisi {
 
     // Tämä luokka melko vajavainen vielä, pitää kattoa myöhemmin
     private String nimi;
-    private final String[] nimet = {"Timo", "Joni", "Kasper", "Pekka", "Jouni", "Kalle", "Pentti"};
+    private final String[] nimet = {"Dennis","Johnny","Scottie","Todd","Stuart","Antione","Ismael","Abram","Hugh","Marlon","Ned","Vincent"
+    ,"Alberto","Jan","Elvis","Levi","Vito","Frances","Christian","Carrol","Burton","Irvin","Thurman","Desmond","Pat","Darryl","Clifton","Clyde",
+    "Lelah","Marivel","Camelia","Antonietta","Elsy","Leone","Shawnna","Rachele","Carolynn","Natisha","Yolando","Joselyn","Gabriela","Kamilah","Alissa",
+    "Loise","Emma","Zella","Tomeka","Kristeen"};
     private final Random random;
 
-    public Poliisi() {
+    Poliisi() {
         random = new Random();
         this.nimi = nimet[random.nextInt(nimet.length - 1)];
     }

@@ -38,10 +38,22 @@ public class Rikolliset {
     public void setRaha(int määrä) {
         this.raha = määrä;
     }
+    
+    public void setMaine(int maine){
+        this.maine = maine;
+    }
+    
+    public void setCombatPower(int combatPower){
+        this.combatPower = combatPower;
+    }
 
     public void lisääJäsen(Rikollinen jäsen) {
         jäsenet.add(jäsen);
         päivitäMaineJaCP();
+    }
+    
+    public void poistaJäsen(Rikollinen jäsen){
+        jäsenet.remove(jäsen);
     }
 
     private void päivitäMaineJaCP() {
@@ -56,11 +68,15 @@ public class Rikolliset {
         return "Jäseniä: " + jäsenet.size() + " | Maine: " + maine + " | CP: " + combatPower + " | Rahaa: " + raha + "\n";
     }
     
+    public void checkVankila(){
+        
+    }
+    
     @Override
     public String toString() {
         String jäsenetMerkkijono = perusTiedot();
         for (int i = 0; i < jäsenet.size(); i++) {
-            jäsenetMerkkijono += (i + 1) + ". " + jäsenet.get(i) + " | Hinta: " + jäsenet.get(i).getArvo() + "\n";
+            jäsenetMerkkijono += (i + 1) + ". " + jäsenet.get(i).getNimi() + " | Hinta: " + jäsenet.get(i).getArvo() + "\n";
         }
         return jäsenetMerkkijono;
     }

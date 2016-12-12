@@ -38,12 +38,12 @@ public class Rikolliset {
     public void setRaha(int määrä) {
         this.raha = määrä;
     }
-    
-    public void setMaine(int maine){
+
+    public void setMaine(int maine) {
         this.maine = maine;
     }
-    
-    public void setCombatPower(int combatPower){
+
+    public void setCombatPower(int combatPower) {
         this.combatPower = combatPower;
     }
 
@@ -51,9 +51,10 @@ public class Rikolliset {
         jäsenet.add(jäsen);
         päivitäMaineJaCP();
     }
-    
-    public void poistaJäsen(Rikollinen jäsen){
+
+    public void poistaJäsen(Rikollinen jäsen) {
         jäsenet.remove(jäsen);
+        päivitäMaineJaCP();
     }
 
     private void päivitäMaineJaCP() {
@@ -63,15 +64,15 @@ public class Rikolliset {
         }
         this.combatPower = this.maine * 3 / 10;
     }
-    
+
     public String perusTiedot() {
         return "Jäseniä: " + jäsenet.size() + " | Maine: " + maine + " | CP: " + combatPower + " | Rahaa: " + raha + "\n";
     }
-    
-    public void checkVankila(){
-        
+
+    public void checkVankila() {
+
     }
-    
+
     @Override
     public String toString() {
         String jäsenetMerkkijono = perusTiedot();

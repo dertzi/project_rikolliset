@@ -18,7 +18,7 @@ public class Rikollinen {
         "Abdisalam", "Reo", "Berk", "Araz", "Ikenna", "Ebrahim", "Harro",
         "Hayden", "Walton", "Hille", "Imraan", "Nhu", "Boy", "Visar", "Iko",
         "Jarimatti", "Alon", "Florent", "Matte", "Timofey", "Yrjänä", "Faris"};
-    private final String[] erikoisuudet = {"Tietotekniikka", "Räjähteet", "Ampuma-aseet", "Salamyhkäinen", "Taistelulajit", "Hämmennys"};
+    private final String[] erikoisuudet = {"Valvontakamerat", "Yksityisvartijat", "Erikoisvahvistetut kassakaapit", "Laserjärjestelmät", "Koirat", "Lukot"};
     private final Random random;
 
     public Rikollinen() {

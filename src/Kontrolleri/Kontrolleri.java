@@ -90,10 +90,14 @@ public class Kontrolleri {
                                 // Kohteen tilanne (CP/Rahat) pysyy samana.
                                 // Jos hyökkäys onnistuu: Jokaisen jäsenen kohdalla 4% mahdollisuus "kuolla" ja
                                 // 65%-100% osuus kohteen rahoista. Kohteen vaikeustaso nousee (lisää rahaa, cp, turvallisuutta)
-                                // 
+                                 
                                 // Missä poliisit? Mites jos tehdään niin että poliisit tulevat peliin kun maine nousee n. 10000 hujakoille?
                                 // Poliisit tekevät satunnaisia ratsioita jengin kimppuun aina loopin lopussa. Ratsiat voivat aiheuttaa rahan menetystä
                                 // ja jengin menetystä. Poliisiasemalle tehty onnistunut hyökkäys estää poliiseja toimimasta n 5-10 erän ajaksi.
+                                
+                                // Tarkista erikoisuudet:
+                                // 
+                                //kohde.getPankit().get(syöteInt - 1).getTurvallisuus();
                             }
 
                             break;

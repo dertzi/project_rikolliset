@@ -9,22 +9,26 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-
 /**
  *
  * @author VStore
  */
 public class Poliisit {
 
+    private String nimi;
     private int combatPower;
-    private ArrayList poliisit;
+    private ArrayList<Poliisi> poliisit = new ArrayList<>();
     private Random random;
     Vankila vankila = new Vankila();
     int CPcache;
+    Rikolliset rikolliset;
+    private final int poliisiMäärä = 10;
 
     public Poliisit() {
-        this.combatPower = 0;
-        this.poliisit = new ArrayList<>();
+        for (int i = 0; i < poliisiMäärä; i++) {
+            poliisit.add(new Poliisi());
+        }
+        this.nimi = "Poliisilaitos";
     }
 
     public String ratsia(Rikolliset rikolliset, Vankila vankila) {
@@ -37,30 +41,23 @@ public class Poliisit {
             if (value >= 50) {
                 CPcache = rikolliset.getCombatPower();
                 vankila.lisääRikollinen(rikollinen);
-                rikolliset.setMaine(rikolliset.getMaine()-rikollinen.getMaine());
-                rikolliset.setCombatPower(0);
+                rikolliset.setMaine(rikolliset.getMaine() - rikollinen.getMaine());
+                rikolliset.setCombatPower(rikolliset.getCombatPower()-rikolliset.getRikollinenCombatPower(rikollinen));
                 it.remove();
                 return rikollinen.getNimi() + " joutui kaltereiden taakse poliisiratsian seurauksesta.";
             }
 
         }
-        
-        if (!vankila.vapautuvatRikolliset().isEmpty()){
+
+        if (!vankila.vapautuvatRikolliset().isEmpty()) {
             for (Iterator<Rikollinen> it2 = vankila.vapautuvatRikolliset().iterator(); it2.hasNext();) {
                 Rikollinen rikollinen = it2.next();
                 rikolliset.lisääJäsen(rikollinen);
-                rikolliset.setCombatPower(CPcache);
+                rikolliset.setCombatPower(rikolliset.getCombatPower()+rikolliset.getRikollinenCombatPower(rikollinen));
                 vankila.resetVapautuvatRikolliset();
-                return rikollinen.getNimi() + ", vapautui vankilasta";
+                return rikollinen.getNimi() + ", vapautui vankilasta.";
             }
         }
-        
-        //if (!vankila.getRikolliset().isEmpty()) {
-        //    String merkkijono = "Vankilassa olevat rikolliset: \n";
-        //    merkkijono += vankila.toString();
-        //    return merkkijono;
-        //}
-
         return "";
     }
 
@@ -70,6 +67,20 @@ public class Poliisit {
 
     public void setCombatPower(int combatPower) {
         this.combatPower = combatPower;
+    }
+
+    public String toString(Rikolliset rikolliset) {
+        if (!rikolliset.getJäsenet().isEmpty()){
+            this.combatPower = rikolliset.getCombatPower() / 10 * 8;
+        }else{
+            this.combatPower = 0;
+        }
+        
+        String merkkijono = "Poliisilaitoksen jäsenet:\n\n# | Nimi | Arvo | CombatPower \n\nPoliisilaitoksen CombatPower: "+combatPower+"\n\n";
+        for (int i = 0 ; i < poliisit.size(); i++){
+            merkkijono += (i + 1) + ". " + poliisit.get(i).getNimi() + " | " + poliisit.get(i).getArvo() + " | " + poliisit.get(i).getCombatPower() + "\n";
+        }
+        return merkkijono;
     }
 
 }

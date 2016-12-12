@@ -28,17 +28,20 @@ public class Vankila {
     }
 
     public void vankilaTimer() {
-        for (Map.Entry<Rikollinen, Integer> entry : rikollisetHM.entrySet()) {
-            entry.setValue(vankilaAika - 1);
-            vankilaAika -= 1;
-            if (entry.getValue() == 0) {
-                vapautuvatRikolliset.add(entry.getKey());
-                rikolliset.remove(entry.getKey());
-                rikollisetHM.remove(entry, entry);
-                vankilaAika = 6;
+        if (!rikolliset.isEmpty()) {
+            for (Map.Entry<Rikollinen, Integer> entry : rikollisetHM.entrySet()) {
+                entry.setValue(vankilaAika - 1);
+                vankilaAika -= 1;
+                if (entry.getValue() == 0) {
+                    vapautuvatRikolliset.add(entry.getKey());
+                    rikolliset.remove(entry.getKey());
+                    rikollisetHM.remove(entry, entry);
+                    vankilaAika = 5;
+                }
             }
         }
     }
+    
 
     public void lisääRikollinen(Rikollinen rikollinen) {
         if (!rikolliset.contains(rikollinen)) {
@@ -47,8 +50,8 @@ public class Vankila {
         }
 
     }
-    
-    public void resetVapautuvatRikolliset(){
+
+    public void resetVapautuvatRikolliset() {
         vapautuvatRikolliset.clear();
     }
 
@@ -69,4 +72,3 @@ public class Vankila {
         return merkkijono;
     }
 }
-

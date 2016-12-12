@@ -158,7 +158,7 @@ public class Kontrolleri {
 
                     break;
                 case 4:
-                    UI.näytäln("Poliisit");
+                    UI.näytäln(poliisit.toString(rikolliset));
                     break;
                 case 0:
                     lopetaSimulaatio = true;

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Rikolliset {
 
     private int maine, raha, combatPower;
-    private final int ALKU_RAHA = 10000, ALKU_MAINE = 0, ALKU_CP = 0;
+    private final int ALKU_RAHA = 1000000, ALKU_MAINE = 0, ALKU_CP = 0;
     private ArrayList<Rikollinen> jäsenet;
 
     public Rikolliset() {
@@ -20,7 +20,13 @@ public class Rikolliset {
     }
 
     public int getCombatPower() {
+        päivitäMaineJaCP();
         return combatPower;
+    }
+    
+    public int getRikollinenCombatPower(Rikollinen rikollinen){
+        int CombatPower = rikollinen.getMaine() * 3 / 10;
+        return CombatPower;
     }
 
     public int getMaine() {
@@ -42,7 +48,9 @@ public class Rikolliset {
     public void setMaine(int maine){
         this.maine = maine;
     }
-    
+    // Tätä funktiota tarvitaan vankila funktion avuksi.
+    // jotta siis voidaan poistaa rikollisen antama combatPoweri
+    // vankilaolo ajaksi.
     public void setCombatPower(int combatPower){
         this.combatPower = combatPower;
     }

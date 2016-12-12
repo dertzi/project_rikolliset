@@ -20,7 +20,6 @@ public class Poliisit {
     private ArrayList<Poliisi> poliisit = new ArrayList<>();
     private Random random;
     Vankila vankila = new Vankila();
-    int CPcache;
     Rikolliset rikolliset;
     private final int poliisiMäärä = 10;
 
@@ -32,6 +31,7 @@ public class Poliisit {
     }
 
     public String ratsia(Rikolliset rikolliset, Vankila vankila) {
+        int vankilaAika = 5;
         this.random = new Random();
         Iterator<Rikollinen> it = rikolliset.getJäsenet().iterator();
 
@@ -39,8 +39,7 @@ public class Poliisit {
             Rikollinen rikollinen = it.next();
             int value = random.nextInt(100);
             if (value >= 50) {
-                CPcache = rikolliset.getCombatPower();
-                vankila.lisääRikollinen(rikollinen);
+                vankila.lisääRikollinen(rikollinen,vankilaAika);
                 rikolliset.setMaine(rikolliset.getMaine() - rikollinen.getMaine());
                 rikolliset.setCombatPower(rikolliset.getCombatPower()-rikolliset.getRikollinenCombatPower(rikollinen));
                 it.remove();

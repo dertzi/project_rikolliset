@@ -6,8 +6,8 @@ public class Rikollinen {
 
     private int maine;
     private int arvo;
-    private final String nimi;
-    private final String erikoisuus;
+    private String nimi, erikoisuus;
+    private final String EI_ERIKOISUUTTA;
     private final String[] nimet = {"Syeda", "Heba", "Nataliia", "Zoey", "Lalla", "Rena",
         "Piippa", "Zena", "Raune", "Soheila", "Semra", "Stanislava",
         "Catja", "Diona", "Eha", "Eleonor", "Lo", "Trina", "Neli",
@@ -29,6 +29,7 @@ public class Rikollinen {
         // konstruktoriin ja vielä sijoittaa listaan. Toinen vaihtoehto olisi
         // List<String> lines = FileUtils.readLines(new File("/path/to/file.txt"), "utf-8");
         // käyttäen commons.io:ta joka on ulkoinen kirjasto joka pitäisi sitten ladata.
+        this.EI_ERIKOISUUTTA = "Ei erikoisuutta";
         this.random = new Random();
         this.nimi = nimet[random.nextInt(nimet.length)];
         //this.erikoisuus = erikoisuudet[random.nextInt(erikoisuudet.length)];
@@ -38,15 +39,19 @@ public class Rikollinen {
         if (random.nextInt(6) == 5) {
             this.erikoisuus = erikoisuudet[random.nextInt(erikoisuudet.length)];
         } else {
-            this.erikoisuus = "Ei erikoisuutta";
+            this.erikoisuus = this.EI_ERIKOISUUTTA;
         }
 
         // Rikollisen arvo on 2000 suurempi jos sillä on erikoisuus
-        if (erikoisuus.equals("Ei erikoisuutta")) {
+        if (erikoisuus.equals(this.EI_ERIKOISUUTTA)) {
             this.arvo = maine * 13;
         } else {
             this.arvo = maine * 13 + 2000;
         }
+    }
+
+    public String getEI_ERIKOISUUTTA() {
+        return EI_ERIKOISUUTTA;
     }
 
     public String getNimi() {

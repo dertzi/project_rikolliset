@@ -27,15 +27,17 @@ public class KohteetToiminnallisuus {
         }
     }
 
-    public double getCombatPower() {
+    public int getCombatPower() {
         return combatPower;
     }
 
     public String getNimi() {
         return nimi;
     }
-    
-    // TODO:
+
+    public String[] getTurvallisuus() {
+        return turvallisuus;
+    }
     
     @Override
     public String toString() {

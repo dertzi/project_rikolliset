@@ -90,14 +90,30 @@ public class Kontrolleri {
                                 // Kohteen tilanne (CP/Rahat) pysyy samana.
                                 // Jos hyökkäys onnistuu: Jokaisen jäsenen kohdalla 4% mahdollisuus "kuolla" ja
                                 // 65%-100% osuus kohteen rahoista. Kohteen vaikeustaso nousee (lisää rahaa, cp, turvallisuutta)
-                                 
                                 // Missä poliisit? Mites jos tehdään niin että poliisit tulevat peliin kun maine nousee n. 10000 hujakoille?
                                 // Poliisit tekevät satunnaisia ratsioita jengin kimppuun aina loopin lopussa. Ratsiat voivat aiheuttaa rahan menetystä
                                 // ja jengin menetystä. Poliisiasemalle tehty onnistunut hyökkäys estää poliiseja toimimasta n 5-10 erän ajaksi.
+                                // Ota talteen kohteen CP turvallisuuden aiheuttamia muutoksia varten 
+                                int kohdeCP = kohde.getPankit().get(syöteInt - 1).getCombatPower();
+                                // Vertaa rikollisten erikoisuudet, kohteiden turvallisuuteen:
+                                String[] kohteidenTurvallisuudet = kohde.getPankit().get(syöteInt - 1).getTurvallisuus();
+                                int eiVastaavaaErikoisuutta = 0;
+                                for (int i = 0; i < kohteidenTurvallisuudet.length; i++) {
+                                    if (!rikolliset.getErikoisuudet().contains(kohteidenTurvallisuudet[i])) {
+                                        ++eiVastaavaaErikoisuutta;
+                                    }
+
+                                }
+                                // Jos rikollisilla ei ole erikoisuutta kohteen turvallisuutta vastaan
+                                // kohteen CP kasvaa 200:lla per puuttuva erikoisuus
+                                kohdeCP += 200 * eiVastaavaaErikoisuutta;
                                 
-                                // Tarkista erikoisuudet:
-                                // 
-                                //kohde.getPankit().get(syöteInt - 1).getTurvallisuus();
+                                // Tässä kohtaa tapahtuu itse "hyökkäys" vertaamalla CP arvoja:
+                                // Eli tässä lasketaan CPt ja niistä saadusta arvosta saamme tietää
+                                // prosentuaalisen mahdollisuuden hyökkäyksen onnistumiseen.
+                                // Pitää kehittää joku random systeemi johon voi syöttää saatu muuttuja
+                                // ja se palauttaa arvon siihen todennäköisyyteen nähden? ... käyn kaupassa brb.
+                                
                             }
 
                             break;

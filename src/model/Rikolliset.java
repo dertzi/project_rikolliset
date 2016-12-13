@@ -3,12 +3,14 @@ package model;
 import java.util.ArrayList;
 
 public class Rikolliset {
-
+    
+    private ArrayList<String> erikoisuudet;
     private int maine, raha, combatPower;
     private final int ALKU_RAHA = 10000, ALKU_MAINE = 0, ALKU_CP = 0;
     private ArrayList<Rikollinen> jäsenet;
 
     public Rikolliset() {
+        this.erikoisuudet = new ArrayList<>();
         this.combatPower = ALKU_CP;
         this.maine = ALKU_MAINE;
         this.raha = ALKU_RAHA;
@@ -31,6 +33,10 @@ public class Rikolliset {
         return raha;
     }
 
+    public ArrayList<String> getErikoisuudet() {
+        return erikoisuudet;
+    }
+    
     public ArrayList<Rikollinen> getJäsenet() {
         return jäsenet;
     }
@@ -49,22 +55,28 @@ public class Rikolliset {
 
     public void lisääJäsen(Rikollinen jäsen) {
         jäsenet.add(jäsen);
-        päivitäMaineJaCP();
+        päivitäRikollistenTiedot();
     }
 
     public void poistaJäsen(Rikollinen jäsen) {
         jäsenet.remove(jäsen);
-        päivitäMaineJaCP();
+        päivitäRikollistenTiedot();
     }
-
-    private void päivitäMaineJaCP() {
+    
+    // funktio päivittää jengin erikoisuudet, maineen ja CPn ajan tasalle!
+    private void päivitäRikollistenTiedot() {
         this.maine = 0;
+        this.erikoisuudet.clear();
         for (Rikollinen rikollinen : jäsenet) {
             this.maine += rikollinen.getMaine();
+            String rikollisenErikoisuus = rikollinen.getErikoisuus();
+            if (!rikollisenErikoisuus.equals(rikollinen.getEI_ERIKOISUUTTA()) && !this.erikoisuudet.contains(rikollisenErikoisuus)) {
+                this.erikoisuudet.add(rikollisenErikoisuus);
+            }
         }
         this.combatPower = this.maine * 3 / 10;
     }
-
+    
     public String perusTiedot() {
         return "Jäseniä: " + jäsenet.size() + " | Maine: " + maine + " | CP: " + combatPower + " | Rahaa: " + raha + "\n";
     }

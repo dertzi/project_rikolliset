@@ -3,6 +3,9 @@ package model;
 import java.util.Random;
 
 public class KohteetToiminnallisuus {
+    // Luokat ; kohdeMarketti, kohdePankki, ja kohdeVankila perivät
+    // tämän luokan pohjan ie. x extends y.
+    
     
     Random random;
     String nimi;
@@ -10,6 +13,7 @@ public class KohteetToiminnallisuus {
     private int combatPower, vaikeustaso;
     private final String[] turvallisuudet = {"Valvontakamerat", "Yksityisvartijat", "Erikoisvahvistetut kassakaapit", "Laserjärjestelmät", "Koirat", "Lukot"};
 
+    // Perus konstruktori
     public KohteetToiminnallisuus(String nimi, int vaikeustaso) {
         this.random = new Random();
         this.turvallisuus = new String[6];

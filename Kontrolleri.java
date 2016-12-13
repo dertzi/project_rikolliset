@@ -39,6 +39,8 @@ public class Kontrolleri {
         do {
             // TODO: Statsit näkyvät nyt. Tämän voisi päivittää myös näyttämään nykyiset erikoisuudet, jäsenien määrän jne.
             UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + "\n");
+            // Tulostaa vangit ja heidän jäljellä oleva lusittava aika
+            // Jos siis vankilassa on väkeä.
             if (!vankila.getRikolliset().isEmpty()) {
                 UI.näytäln("Vankila: ");
                 UI.näytäln(vankila.toString());
@@ -144,7 +146,7 @@ public class Kontrolleri {
                     if (syöte == 0) {
                         break;
                     }
-
+                    // Syötteen oikeellisuuden tarkistus
                     if (syöte < 1 || syöte > kauppa.getVALIKOIMAN_KOKO()) {
                         UI.näytäln("Virheellinen valinta!");
                     } else if (rikolliset.getRaha() >= kauppa.ostaRikollinen(syöte).getArvo()) {
@@ -158,6 +160,7 @@ public class Kontrolleri {
 
                     break;
                 case 4:
+                    // Tulostaa listan poliiseista
                     UI.näytäln(poliisit.toString(rikolliset));
                     break;
                 case 0:
@@ -165,9 +168,13 @@ public class Kontrolleri {
                     break;
 
             }
+            // Vankila-ajastin; kun vankilassa on rikollisia, jokaisen loopin jälkeen jäljellä oleva
+            // vankila-aika -=1;
             vankila.vankilaTimer();
+            // Poliisien suorrittama ratsia, random tod.näk. arvoilla käydää läpi jokainen pelaajan
+            // rikollinen, joka sitten päätyy vankilaan tai ei.
             UI.näytäln(poliisit.ratsia(rikolliset, vankila));
 
-        } while (!lopetaSimulaatio);
+        } while (!lopetaSimulaatio); 
     }
 }

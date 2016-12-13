@@ -70,6 +70,10 @@ public class Poliisi {
     public int getCombatPower(){
         return combatPower;
     }
+    
+    public void setCombatPower(int CP){
+        this.combatPower = CP;
+    }
             
     @Override
     public String toString(){

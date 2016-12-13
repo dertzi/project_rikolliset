@@ -39,9 +39,9 @@ public class Poliisit {
             Rikollinen rikollinen = it.next();
             int value = random.nextInt(100);
             if (value >= 50) {
-                vankila.lisääRikollinen(rikollinen,vankilaAika);
+                vankila.lisääRikollinen(rikollinen, vankilaAika);
                 rikolliset.setMaine(rikolliset.getMaine() - rikollinen.getMaine());
-                rikolliset.setCombatPower(rikolliset.getCombatPower()-rikolliset.getRikollinenCombatPower(rikollinen));
+                rikolliset.setCombatPower(rikolliset.getCombatPower() - rikolliset.getRikollinenCombatPower(rikollinen));
                 it.remove();
                 return rikollinen.getNimi() + " joutui kaltereiden taakse poliisiratsian seurauksesta.";
             }
@@ -52,7 +52,7 @@ public class Poliisit {
             for (Iterator<Rikollinen> it2 = vankila.vapautuvatRikolliset().iterator(); it2.hasNext();) {
                 Rikollinen rikollinen = it2.next();
                 rikolliset.lisääJäsen(rikollinen);
-                rikolliset.setCombatPower(rikolliset.getCombatPower()+rikolliset.getRikollinenCombatPower(rikollinen));
+                rikolliset.setCombatPower(rikolliset.getCombatPower() + rikolliset.getRikollinenCombatPower(rikollinen));
                 vankila.resetVapautuvatRikolliset();
                 return rikollinen.getNimi() + ", vapautui vankilasta.";
             }
@@ -69,16 +69,22 @@ public class Poliisit {
     }
 
     public String toString(Rikolliset rikolliset) {
-        if (!rikolliset.getJäsenet().isEmpty()){
+        if (!rikolliset.getJäsenet().isEmpty()) {
             this.combatPower = rikolliset.getCombatPower() / 10 * 8;
-        }else{
+            int valueforpoliisi = this.combatPower;
+            for (int i = 0; i < poliisit.size(); i++) {
+                poliisit.get(i).setCombatPower(valueforpoliisi/poliisit.size());
+
+            }
+        } else {
             this.combatPower = 0;
         }
-        
-        String merkkijono = "Poliisilaitoksen jäsenet:\n\n# | Nimi | Arvo | CombatPower \n\nPoliisilaitoksen CombatPower: "+combatPower+"\n\n";
-        for (int i = 0 ; i < poliisit.size(); i++){
+
+        String merkkijono = "Poliisilaitoksen jäsenet:\n\n# | Nimi | Arvo | CombatPower \n\n";
+        for (int i = 0; i < poliisit.size(); i++) {
             merkkijono += (i + 1) + ". " + poliisit.get(i).getNimi() + " | " + poliisit.get(i).getArvo() + " | " + poliisit.get(i).getCombatPower() + "\n";
         }
+        merkkijono += "\n\nPoliisilaitoksen CombatPower: " + combatPower + "\n\n";
         return merkkijono;
     }
 

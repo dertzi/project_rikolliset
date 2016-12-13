@@ -51,7 +51,7 @@ public class Kohteet {
         return vankilat;
     }
     
-    
+    // Marketit merkkijonona
     public String getMarketitString() {
         String merkkijono = "";
         for (int i = 0; i < marketit.size(); i++) {
@@ -59,7 +59,7 @@ public class Kohteet {
         }
         return merkkijono;
     }
-
+    // Pankit merkkijonona
     public String getPankitString() {
         String merkkijono = "";
         for (int i = 0; i < pankit.size(); i++) {
@@ -68,6 +68,7 @@ public class Kohteet {
         return merkkijono;
     }
 
+    // Vankilat merkkijonona
     public String getVankilatString() {
         String merkkijono = "";
         for (int i = 0; i < vankilat.size(); i++) {
@@ -80,7 +81,7 @@ public class Kohteet {
     public String toString() {
         return this.toString("kaikki");
     }
-
+    // toString
     public String toString(String kohde) {
         String merkkijono;
         switch (kohde) {

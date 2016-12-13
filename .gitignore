@@ -4,3 +4,5 @@
 src/model/Testi.java
 *.class
 *.xml
+*.class
+nbproject/private/private.properties

@@ -6,7 +6,7 @@ public class Rikolliset {
     
     private ArrayList<String> erikoisuudet;
     private int maine, raha, combatPower;
-    private final int ALKU_RAHA = 10000, ALKU_MAINE = 0, ALKU_CP = 0;
+    private final int ALKU_RAHA = 15000, ALKU_MAINE = 0, ALKU_CP = 0;
     private ArrayList<Rikollinen> jäsenet;
 
     public Rikolliset() {
@@ -19,6 +19,7 @@ public class Rikolliset {
         //Jäseniä ei luoda automaattisesti tässä. Jäsenet lisätään
         //lisääJäsen() metodin kautta ja jäseniä saadaan kaupasta ja/tai vankiloista
         //mahdollisesti lisätään joku tapahtuma joka saattaa lisätä jäseniä.
+       
     }
 
     public int getCombatPower() {
@@ -69,7 +70,7 @@ public class Rikolliset {
     }
     
     // funktio päivittää jengin erikoisuudet, maineen ja CPn ajan tasalle!
-    private void päivitäRikollistenTiedot() {
+    public void päivitäRikollistenTiedot() {
         this.maine = 0;
         this.erikoisuudet.clear();
         for (Rikollinen rikollinen : jäsenet) {
@@ -79,7 +80,7 @@ public class Rikolliset {
                 this.erikoisuudet.add(rikollisenErikoisuus);
             }
         }
-        this.combatPower = this.maine * 3 / 10;
+        this.combatPower = this.maine * 4 / 10;
     }
     
     public String perusTiedot() {
@@ -94,7 +95,7 @@ public class Rikolliset {
     public String toString() {
         String jäsenetMerkkijono = perusTiedot();
         for (int i = 0; i < jäsenet.size(); i++) {
-            jäsenetMerkkijono += (i + 1) + ". " + jäsenet.get(i).getNimi() + " | Hinta: " + jäsenet.get(i).getArvo() + "\n";
+            jäsenetMerkkijono += (i + 1) + ". " + jäsenet.get(i).getNimi() + " | Maine: " + jäsenet.get(i).getMaine() + "| " + jäsenet.get(i).getErikoisuus()+"\n";
         }
         return jäsenetMerkkijono;
     }

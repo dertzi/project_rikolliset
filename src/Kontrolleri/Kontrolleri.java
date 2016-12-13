@@ -1,7 +1,6 @@
 package Kontrolleri;
 
 import Käyttöliittymä.Käyttöliittymä;
-import java.util.Arrays;
 import model.Kohteet;
 import model.Rikolliset;
 import model.Kauppa;
@@ -27,10 +26,22 @@ public class Kontrolleri {
                 + "| 0. Lopeta simulaatio";
 
         /* Simulaation aloitusteksti */
-        UI.näytäln("Tervetuloa |> RIKOLLISET <| simulaatiopeliin");
+        UI.näytäln(" ,ggggggggggg,                                                                                ");
+        UI.näytäln("dP\"\"\"88\"\"\"\"\"\"Y8,        ,dPYb,                  ,dPYb, ,dPYb,                            I8   ");
+        UI.näytäln("Yb,  88      `8b        IP'`Yb                  IP'`Yb IP'`Yb                            I8   ");
+        UI.näytäln("Yb,  88      `8b        IP'`Yb                  IP'`Yb IP'`Yb                            I8   ");
+        UI.näytäln(" `\"  88      ,8P   gg   I8  8I                  I8  8I I8  8I  gg                     88888888");
+        UI.näytäln("     88aaaad8P\"    \"\"   I8  8bgg,               I8  8' I8  8'  \"\"                        I8   ");
+        UI.näytäln("     88\"\"\"\"Yb,     gg   I8 dP\" \"8    ,ggggg,    I8 dP  I8 dP   gg     ,g,      ,ggg,     I8   ");
+        UI.näytäln("     88     \"8b    88   I8d8bggP\"   dP\"  \"Y8ggg I8dP   I8dP    88    ,8'8,    i8\" \"8i    I8   ");
+        UI.näytäln("     88      `8i   88   I8P' \"Yb,  i8'    ,8I   I8P    I8P     88   ,8'  Yb   I8, ,8I   ,I8,  ");
+        UI.näytäln("     88       Yb,_,88,_,d8    `Yb,,d8,   ,d8'  ,d8b,_ ,d8b,_ _,88,_,8'_   8)  `YbadP'  ,d88b, ");
+        UI.näytäln("     88        Y88P\"\"Y888P      Y8P\"Y8888P\"    8P'\"Y888P'\"Y888P\"\"Y8P' \"YY8P8P888P\"Y88888P\"\"Y88");
+
+        UI.näytäln("\n\nTervetuloa Rikolliset simulaatiopeliin,");
         UI.näytäln("\nTämä simulaatio simuloi rikollismaailman elämää."
                 + "\nSimulaation käyttäjänä pääset ohjaamaan rikollisjengin ryöstöjä ja\n"
-                + "hankkeita tielläsi alamaailman huipulle pahamaineisinpana rikollisorganisaation johtajana.");
+                + "hankkeita tielläsi alamaailman huipulle pahamaineisinpana rikollisorganisaationa.");
 
         UI.näytä("\nJatka painamalla enter...");
         UI.lueString();
@@ -40,7 +51,8 @@ public class Kontrolleri {
         /* Peruslooppi */
         do {
             // TODO: Statsit näkyvät nyt. Tämän voisi päivittää myös näyttämään nykyiset erikoisuudet, jäsenien määrän jne.
-            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + "\n");
+            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + " | "
+                    + "Jäseniä: " + rikolliset.getJäsenet().size() + " | Erikoisuudet: " + rikolliset.getErikoisuudet().toString() + "\n");
             if (!vankila.getRikolliset().isEmpty()) {
                 UI.näytäln("Vankila: ");
                 UI.näytäln(vankila);
@@ -60,6 +72,9 @@ public class Kontrolleri {
                     switch (syöteInt) {
                         // Tulostaa pankki kohteet
                         case 1:
+
+                            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + " | "
+                                    + "Jäseniä: " + rikolliset.getJäsenet().size() + " | Erikoisuudet: " + rikolliset.getErikoisuudet().toString() + "\n");
                             UI.näytäln("\nPankit:");
                             UI.näytä(kohde.toString("pankit"));
                             UI.näytäln("0. Poistu");
@@ -68,18 +83,22 @@ public class Kontrolleri {
                             UI.clear();
 
                             if (syöteInt == 0) {
+                                UI.clear();
                                 break;
                             }
 
                             if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.clear();
                                 UI.näytäln("Virheellinen valinta");
                             } else {
                                 // Tässä hyökätään kohteeseen
                                 UI.näytäln(hyökkäys(kohde.getPankit().get(syöteInt - 1), rikolliset));
                             }
-                            break;
+                                break;
                         // Tulostaa marketti kohteet
                         case 2:
+                            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + " | "
+                                    + "Jäseniä: " + rikolliset.getJäsenet().size() + " | Erikoisuudet: " + rikolliset.getErikoisuudet().toString() + "\n");
                             UI.näytäln("\nMarketit:");
                             UI.näytä(kohde.toString("marketit"));
 
@@ -89,10 +108,12 @@ public class Kontrolleri {
                             UI.clear();
 
                             if (syöteInt == 0) {
+                                UI.clear();
                                 break;
                             }
 
                             if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.clear();
                                 UI.näytäln("Virheellinen valinta");
                             } else {
                                 // Tässä hyökätään kohteeseen
@@ -101,6 +122,8 @@ public class Kontrolleri {
                             break;
                         // Tulostaa vankila kohteet
                         case 3:
+                            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + " | "
+                                    + "Jäseniä: " + rikolliset.getJäsenet().size() + " | Erikoisuudet: " + rikolliset.getErikoisuudet().toString() + "\n");
                             UI.näytäln("\nVankilat:");
                             UI.näytä(kohde.toString("vankilat"));
                             UI.näytäln("0. Poistu");
@@ -109,10 +132,12 @@ public class Kontrolleri {
                             UI.clear();
 
                             if (syöteInt == 0) {
+                                UI.clear();
                                 break;
                             }
 
                             if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.clear();
                                 UI.näytäln("Virheellinen valinta");
                             } else {
                                 // Tässä hyökätään kohteeseen
@@ -121,18 +146,22 @@ public class Kontrolleri {
                             break;
                         case 4:
                             // Tulostaa kaikki kohteet
+                            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + " | "
+                                    + "Jäseniä: " + rikolliset.getJäsenet().size() + " | Erikoisuudet: " + rikolliset.getErikoisuudet().toString() + "\n");
                             UI.näytäln(kohde.toString("kaikki"));
                             break;
                         case 0:
+                            UI.clear();
                             break;
                         default:
+                            UI.clear();
                             UI.näytäln("Valintaa ei löytynyt");
                             break;
                     }
                     break;
                 case 2:
                     // Tulostaa kaikki rikollisisjengin tiedot
-                    UI.näytäln(rikolliset);
+                    UI.näytäln("\n" + rikolliset);
                     break;
                 case 3:
                     // Kauppa päivittyy kun yksi rikollinen on ostettu.

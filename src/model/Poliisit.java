@@ -38,7 +38,7 @@ public class Poliisit {
         while (it.hasNext()) {
             Rikollinen rikollinen = it.next();
             int value = random.nextInt(100);
-            if (value >= 25) {
+            if (value >= 85) {
                 String merkkijono = "";
                 int raha = rikolliset.getRaha();
                 if (raha > 0){
@@ -86,18 +86,13 @@ public class Poliisit {
     public String toString(Rikolliset rikolliset) {
         if (!rikolliset.getJäsenet().isEmpty()) {
             this.combatPower = rikolliset.getCombatPower() / 10 * 8;
-            int valueforpoliisi = this.combatPower;
-            for (int i = 0; i < poliisit.size(); i++) {
-                poliisit.get(i).setCombatPower(valueforpoliisi / poliisit.size());
-
-            }
         } else {
             this.combatPower = 0;
         }
 
-        String merkkijono = "Poliisilaitoksen jäsenet:\n\n# | Nimi | Arvo | CombatPower \n\n";
+        String merkkijono = "Poliisilaitoksen jäsenet:\n\n# | Nimi | Arvo \n\n";
         for (int i = 0; i < poliisit.size(); i++) {
-            merkkijono += (i + 1) + ". " + poliisit.get(i).getNimi() + " | " + poliisit.get(i).getArvo() + " | " + poliisit.get(i).getCombatPower() + "\n";
+            merkkijono += (i + 1) + ". " + poliisit.get(i).getNimi() + " | " + poliisit.get(i).getArvo() + " | " + "\n";
         }
         merkkijono += "\n\nPoliisilaitoksen CombatPower: " + combatPower + "\n\n";
         return merkkijono;

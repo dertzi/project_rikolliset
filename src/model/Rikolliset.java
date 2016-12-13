@@ -24,6 +24,11 @@ public class Rikolliset {
     public int getCombatPower() {
         return combatPower;
     }
+    
+    public int getRikollinenCombatPower(Rikollinen rikollinen){
+        int CombatPower = rikollinen.getMaine() * 3 / 10;
+        return CombatPower;
+    }
 
     public int getMaine() {
         return maine;

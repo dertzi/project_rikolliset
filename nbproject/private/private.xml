@@ -2,6 +2,20 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/model/Poliisi.java</file>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/model/KohdeMarketti.java</file>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/model/Kohteet.java</file>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/model/Poliisit.java</file>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/model/Kauppa.java</file>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/model/KohdeVankila.java</file>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/Käyttöliittymä/Käyttöliittymä.java</file>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/model/Vankila.java</file>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/model/KohteetToiminnallisuus.java</file>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/model/Rikolliset.java</file>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/model/KohdePankki.java</file>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/model/Rikollinen.java</file>
+            <file>file:/C:/Users/Joel/Documents/GitHub/Oliot_Projekti/project_rikolliset/src/Kontrolleri/Kontrolleri.java</file>
+        </group>
     </open-files>
 </project-private>

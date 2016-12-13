@@ -61,10 +61,8 @@ public class Kontrolleri {
                             UI.näytäln("\nPankit:");
                             UI.näytä(kohde.toString("pankit"));
                             UI.näytäln("0. Poistu");
-                            UI.näytä("Valinta: ");
-                            syöteInt = UI.lueInt();
-                            UI.clear();
-
+                            UI.näytä("Hyökkää kohteeseen (1-"+ kohde.getPankit().size() +"): ");
+                            
                             if (syöteInt == 0) {
                                 break;
                             }
@@ -72,7 +70,7 @@ public class Kontrolleri {
                             if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
                                 UI.näytäln("Virheellinen valinta");
                                 break;
-                            } else {
+                            } else {}
                                 // TÄSSÄ HYÖKÄTÄÄN KOHTEESEEN
                                 // KUTSU kontrollerissa luotuun funktioon parametrina
                                 // valittu kohde. Hyökkäys joko onnistuu tai epäonnistuu.
@@ -114,22 +112,39 @@ public class Kontrolleri {
                                 // Pitää kehittää joku random systeemi johon voi syöttää saatu muuttuja
                                 // ja se palauttaa arvon siihen todennäköisyyteen nähden? ... käyn kaupassa brb.
                                 
-                            }
-
+                            
                             break;
                         // Tulostaa marketti kohteet
                         case 2:
                             UI.näytäln("\nMarketit:");
                             UI.näytä(kohde.toString("marketit"));
                             UI.näytäln("0. Poistu");
-                            UI.näytä("Valinta: ");
+                            UI.näytä("Hyökkää kohteeseen (1-"+ kohde.getMarketit().size() +"): ");
+                            //hyökkäys shaibaa, saa poistaa
+                            if (syöteInt == 0) {
+                                break;
+                            }
+
+                            if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.näytäln("Virheellinen valinta");
+                                break;
+                            } else {}
                             break;
                         // Tulostaa vankila kohteet
                         case 3:
                             UI.näytäln("\nVankilat:");
                             UI.näytä(kohde.toString("vankilat"));
                             UI.näytäln("0. Poistu");
-                            UI.näytä("Valinta: ");
+                            UI.näytä("Hyökkää kohteeseen (1-"+ kohde.getVankilat().size() +"): ");
+                            //hyökkäys shaibaa, saa poistaa
+                            if (syöteInt == 0) {
+                                break;
+                            }
+
+                            if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.näytäln("Virheellinen valinta");
+                                break;
+                            } else {}
                             break;
                         case 4:
                             // Tulostaa kaikki kohteet
@@ -139,8 +154,7 @@ public class Kontrolleri {
                         default:
                             UI.näytäln("Valintaa ei löytynyt");
                             break;
-                    }
-                    break;
+            }
                 case 2:
                     // Tulostaa kaikki rikollisisjengin tiedot
                     UI.näytäln(rikolliset.toString());
@@ -160,7 +174,7 @@ public class Kontrolleri {
                     if (syöte == 0) {
                         break;
                     }
-
+                    // Syötteen oikeellisuuden tarkistus
                     if (syöte < 1 || syöte > kauppa.getVALIKOIMAN_KOKO()) {
                         UI.näytäln("Virheellinen valinta!");
                     } else if (rikolliset.getRaha() >= kauppa.ostaRikollinen(syöte).getArvo()) {
@@ -174,14 +188,19 @@ public class Kontrolleri {
 
                     break;
                 case 4:
-                    UI.näytäln("Poliisit");
+                    // Tulostaa listan poliiseista
+                    UI.näytäln(poliisit.toString(rikolliset));
                     break;
                 case 0:
                     lopetaSimulaatio = true;
                     break;
 
             }
+            // Vankila-ajastin; kun vankilassa on rikollisia, jokaisen loopin jälkeen jäljellä oleva
+            // vankila-aika -=1;
             vankila.vankilaTimer();
+            // Poliisien suorrittama ratsia, random tod.näk. arvoilla käydää läpi jokainen pelaajan
+            // rikollinen, joka sitten päätyy vankilaan tai ei.
             UI.näytäln(poliisit.ratsia(rikolliset, vankila));
 
         } while (!lopetaSimulaatio);

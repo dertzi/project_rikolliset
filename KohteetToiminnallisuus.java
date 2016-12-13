@@ -30,6 +30,8 @@ public class KohteetToiminnallisuus {
             turvallisuudet[randomValue] = null;
         }
     }
+    
+    
 
     public double getCombatPower() {
         return combatPower;

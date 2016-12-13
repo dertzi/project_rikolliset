@@ -8,6 +8,7 @@ import model.Poliisit;
 import model.Vankila;
 
 public class Kontrolleri {
+    
 
     public static void main(String[] args) {
         Käyttöliittymä UI = new Käyttöliittymä();
@@ -17,6 +18,9 @@ public class Kontrolleri {
         Poliisit poliisit = new Poliisit();
         int syöteInt;
         Vankila vankila = new Vankila();
+        
+        
+        
 
 
         /* Monivalintavalikko */
@@ -63,7 +67,7 @@ public class Kontrolleri {
                             UI.näytäln("\nPankit:");
                             UI.näytä(kohde.toString("pankit"));
                             UI.näytäln("0. Poistu");
-                            UI.näytä("Valinta: ");
+                            UI.näytä("Hyökkää kohteeseen (1-"+ kohde.getMarketit().size() +"): ");
                             syöteInt = UI.lueInt();
                             UI.clear();
 
@@ -92,10 +96,6 @@ public class Kontrolleri {
                                 // Kohteen tilanne (CP/Rahat) pysyy samana.
                                 // Jos hyökkäys onnistuu: Jokaisen jäsenen kohdalla 4% mahdollisuus "kuolla" ja
                                 // 65%-100% osuus kohteen rahoista. Kohteen vaikeustaso nousee (lisää rahaa, cp, turvallisuutta)
-                                 
-                                // Missä poliisit? Mites jos tehdään niin että poliisit tulevat peliin kun maine nousee n. 10000 hujakoille?
-                                // Poliisit tekevät satunnaisia ratsioita jengin kimppuun aina loopin lopussa. Ratsiat voivat aiheuttaa rahan menetystä
-                                // ja jengin menetystä. Poliisiasemalle tehty onnistunut hyökkäys estää poliiseja toimimasta n 5-10 erän ajaksi.
                                 
                                 // Tarkista erikoisuudet:
                                 // 
@@ -108,18 +108,46 @@ public class Kontrolleri {
                             UI.näytäln("\nMarketit:");
                             UI.näytä(kohde.toString("marketit"));
                             UI.näytäln("0. Poistu");
-                            UI.näytä("Valinta: ");
+                            UI.näytä("Hyökkää kohteeseen (1-"+ kohde.getMarketit().size() +"): ");
+                            
+                            if (syöteInt == 0) {
+                                break;
+                            }
+
+                            if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.näytäln("Virheellinen valinta");
+                                break;
+                            } else {}
                             break;
                         // Tulostaa vankila kohteet
                         case 3:
                             UI.näytäln("\nVankilat:");
                             UI.näytä(kohde.toString("vankilat"));
                             UI.näytäln("0. Poistu");
-                            UI.näytä("Valinta: ");
+                            UI.näytä("Hyökkää kohteeseen (1-"+ kohde.getMarketit().size() +"): ");
+                            
+                            if (syöteInt == 0) {
+                                break;
+                            }
+
+                            if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.näytäln("Virheellinen valinta");
+                                break;
+                            } else {}
                             break;
                         case 4:
                             // Tulostaa kaikki kohteet
                             UI.näytäln(kohde.toString("kaikki"));
+                            UI.näytä("Hyökkää kohteeseen (1-"+ kohde.getMarketit().size() +"): ");
+                            
+                            if (syöteInt == 0) {
+                                break;
+                            }
+
+                            if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.näytäln("Virheellinen valinta");
+                                break;
+                            } else {}
                         case 0:
                             break;
                         default:

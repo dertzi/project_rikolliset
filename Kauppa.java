@@ -16,7 +16,7 @@ public class Kauppa {
         // Jos tämä ei toimi sen voi sitten copy/pastea tuolta alhaalta
         // tähän. Vaihtoehtoisesti Kaupan luonnin jälkeen päivitäValikoima()
         // voidaan kutsua heti.
-        päivitäValikoima();
+        this.päivitäValikoima();
     }
 
     // Kaupan valikoiman päivitys

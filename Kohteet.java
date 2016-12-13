@@ -14,7 +14,7 @@ public class Kohteet {
         "Nissen", "DNA kauppa", "Elisa kauppa", "Apple kauppa", "Intersport", "Sonera kauppa", "Kotipizza", "Teknikmagasinet"};
     private String[] nimetPankit = {"S-pankki", "Danske Bank", "Suomen Pankki", "Helsingin Osakepankki", "Suomen yhdyspankki", "Luotto-Pankki", "Bigbank", "Interbank", "Mandatum",
         "Liittopankki", "Liikepankki", "Sofia Pankki", "Svenska Handelsbanken", "Trevise Pankki", "Turun Osakepankki", "Uudenmaan Osakepankki", "Wasa Aktie Bank", "Ålandsbanken",
-        "Maakuntain Pankki", "Landtmannabanken", "Maakiinteistäpankki", "Savo-Karjalan Osake-Pankki", "Postipankki", "Atlas-Pankki", "Kansallis-Osake-Pankki"};    
+        "Maakuntain Pankki", "Landtmannabanken", "Maakiinteistö pankki", "Savo-Karjalan Osake-Pankki", "Postipankki", "Atlas-Pankki", "Kansallis-Osake-Pankki"};    
     private String[] nimetVankilat = {"Helsingin vankila", "Hämeenlinnan vankila", "Riihimäen vankila", "Kuopion vankila", "Mikkelin vankila", "Oulun vankila", "Jokelan vankila", "Keravan vankila",
         "Vanajan vankila", "Helsingin avovankila", "Vantaan vankila", "Kylmäkosken vankila", "Käyrän vankila", "Satakunnan vankila", "Turun vankila", "Vaasan vankila", "Vilppulan vankila",
         "Juuan vankila", "Laukaan vankila", "Pyhäselän vankila", "Sukevan vankila", "Ylitornion vankila"};
@@ -34,6 +34,7 @@ public class Kohteet {
             vankilat.add(new KohdeVankila(nimetVankilat[random.nextInt(nimetVankilat.length)], i));
         }
     }
+    
 
     public int getMAKSIMI_PER_KOHDE() {
         return MAKSIMI_PER_KOHDE;

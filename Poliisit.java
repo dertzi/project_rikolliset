@@ -39,11 +39,25 @@ public class Poliisit {
             Rikollinen rikollinen = it.next();
             int value = random.nextInt(100);
             if (value >= 50) {
+                String merkkijono = "";
+                int raha = rikolliset.getRaha();
+                if (raha > 0){
+                    int rahaVähennys = (raha/20) * (random.nextInt(2)+1);
+                    if (raha-rahaVähennys < 0){
+                        rikolliset.setRaha(0);
+                    }else{
+                        rikolliset.setRaha(raha-rahaVähennys);
+                        merkkijono += "\nPoliisi sakotti rikollisjengiä : " + "- " + rahaVähennys+"\n";
+                    }
+                    
+                }
+                
                 vankila.lisääRikollinen(rikollinen, vankilaAika);
                 rikolliset.setMaine(rikolliset.getMaine() - rikollinen.getMaine());
                 rikolliset.setCombatPower(rikolliset.getCombatPower() - rikolliset.getRikollinenCombatPower(rikollinen));
                 it.remove();
-                return rikollinen.getNimi() + " joutui kaltereiden taakse poliisiratsian seurauksesta.";
+                merkkijono += rikollinen.getNimi() + " joutui kaltereiden taakse poliisiratsian seurauksesta.";
+                return merkkijono;
             }
 
         }
@@ -54,6 +68,7 @@ public class Poliisit {
                 rikolliset.lisääJäsen(rikollinen);
                 rikolliset.setCombatPower(rikolliset.getCombatPower() + rikolliset.getRikollinenCombatPower(rikollinen));
                 vankila.resetVapautuvatRikolliset();
+                
                 return rikollinen.getNimi() + ", vapautui vankilasta.";
             }
         }
@@ -73,7 +88,7 @@ public class Poliisit {
             this.combatPower = rikolliset.getCombatPower() / 10 * 8;
             int valueforpoliisi = this.combatPower;
             for (int i = 0; i < poliisit.size(); i++) {
-                poliisit.get(i).setCombatPower(valueforpoliisi/poliisit.size());
+                poliisit.get(i).setCombatPower(valueforpoliisi / poliisit.size());
 
             }
         } else {

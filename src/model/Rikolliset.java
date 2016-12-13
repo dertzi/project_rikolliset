@@ -6,7 +6,7 @@ public class Rikolliset {
     
     private ArrayList<String> erikoisuudet;
     private int maine, raha, combatPower;
-    private final int ALKU_RAHA = 10000, ALKU_MAINE = 0, ALKU_CP = 0;
+    private final int ALKU_RAHA = 1000000, ALKU_MAINE = 0, ALKU_CP = 0;
     private ArrayList<Rikollinen> jäsenet;
 
     public Rikolliset() {

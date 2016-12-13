@@ -24,11 +24,24 @@ public class Kontrolleri {
                 + "| 2. Rikollisjengin tiedot | 3. Kauppa | 4. Poliisit "
                 + "| 0. Lopeta simulaatio";
 
+
         /* Simulaation aloitusteksti */
-        UI.näytäln("Tervetuloa |> RIKOLLISET <| simulaatiopeliin");
+        UI.näytäln(" ,ggggggggggg,                                                                                ");
+        UI.näytäln("dP\"\"\"88\"\"\"\"\"\"Y8,        ,dPYb,                  ,dPYb, ,dPYb,                            I8   ");
+        UI.näytäln("Yb,  88      `8b        IP'`Yb                  IP'`Yb IP'`Yb                            I8   ");
+        UI.näytäln("Yb,  88      `8b        IP'`Yb                  IP'`Yb IP'`Yb                            I8   ");
+        UI.näytäln(" `\"  88      ,8P   gg   I8  8I                  I8  8I I8  8I  gg                     88888888");
+        UI.näytäln("     88aaaad8P\"    \"\"   I8  8bgg,               I8  8' I8  8'  \"\"                        I8   ");
+        UI.näytäln("     88\"\"\"\"Yb,     gg   I8 dP\" \"8    ,ggggg,    I8 dP  I8 dP   gg     ,g,      ,ggg,     I8   ");
+        UI.näytäln("     88     \"8b    88   I8d8bggP\"   dP\"  \"Y8ggg I8dP   I8dP    88    ,8'8,    i8\" \"8i    I8   ");
+        UI.näytäln("     88      `8i   88   I8P' \"Yb,  i8'    ,8I   I8P    I8P     88   ,8'  Yb   I8, ,8I   ,I8,  ");
+        UI.näytäln("     88       Yb,_,88,_,d8    `Yb,,d8,   ,d8'  ,d8b,_ ,d8b,_ _,88,_,8'_   8)  `YbadP'  ,d88b, ");
+        UI.näytäln("     88        Y88P\"\"Y888P      Y8P\"Y8888P\"    8P'\"Y888P'\"Y888P\"\"Y8P' \"YY8P8P888P\"Y88888P\"\"Y88");
+
+        UI.näytäln("\n\nTervetuloa Rikolliset simulaatiopeliin,");
         UI.näytäln("\nTämä simulaatio simuloi rikollismaailman elämää."
                 + "\nSimulaation käyttäjänä pääset ohjaamaan rikollisjengin ryöstöjä ja\n"
-                + "hankkeita tielläsi alamaailman huipulle pahamaineisinpana rikollisorganisaation johtajana.");
+                + "hankkeita tielläsi alamaailman huipulle pahamaineisinpana rikollisorganisaationa.");
 
         UI.näytä("\nJatka painamalla enter...");
         UI.lueString();
@@ -38,7 +51,8 @@ public class Kontrolleri {
         /* Peruslooppi */
         do {
             // TODO: Statsit näkyvät nyt. Tämän voisi päivittää myös näyttämään nykyiset erikoisuudet, jäsenien määrän jne.
-            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + "\n");
+            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + " | "
+                    + "Jäseniä: " + rikolliset.getJäsenet().size() + " | Erikoisuudet: " + rikolliset.getErikoisuudet().toString() + "\n");
             if (!vankila.getRikolliset().isEmpty()) {
                 UI.näytäln("Vankila: ");
                 UI.näytäln(vankila.toString());
@@ -58,106 +72,137 @@ public class Kontrolleri {
                     switch (syöteInt) {
                         // Tulostaa pankki kohteet
                         case 1:
+
+                            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + " | "
+                                    + "Jäseniä: " + rikolliset.getJäsenet().size() + " | Erikoisuudet: " + rikolliset.getErikoisuudet().toString() + "\n");
                             UI.näytäln("\nPankit:");
                             UI.näytä(kohde.toString("pankit"));
                             UI.näytäln("0. Poistu");
-                            UI.näytä("Hyökkää kohteeseen (1-"+ kohde.getPankit().size() +"): ");
-                            
+                            UI.näytä("Hyökkää kohteeseen (1-" + kohde.getPankit().size() + "): ");
+                            syöteInt = UI.lueInt();
+
                             if (syöteInt == 0) {
+                                UI.clear();
                                 break;
                             }
 
                             if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.clear();
                                 UI.näytäln("Virheellinen valinta");
                                 break;
-                            } else {}
-                                // TÄSSÄ HYÖKÄTÄÄN KOHTEESEEN
-                                // KUTSU kontrollerissa luotuun funktioon parametrina
-                                // valittu kohde. Hyökkäys joko onnistuu tai epäonnistuu.
-                                // funktiossa sitten toiminta että miten kohde ja jengi muuttuu jos
-                                // hyökkäys onnistuu tai epäonnistuu.
-                                // ESIM: hyökkää(kohde.pankit.get(i))?
+                            } else {
+                            }
+                            // TÄSSÄ HYÖKÄTÄÄN KOHTEESEEN
+                            // KUTSU kontrollerissa luotuun funktioon parametrina
+                            // valittu kohde. Hyökkäys joko onnistuu tai epäonnistuu.
+                            // funktiossa sitten toiminta että miten kohde ja jengi muuttuu jos
+                            // hyökkäys onnistuu tai epäonnistuu.
+                            // ESIM: hyökkää(kohde.pankit.get(i))?
 
-                                // Hyökkäyksen toiminnallisuus:
-                                // Eli kohteen turva lisää kohteen CPseen vaikka 20% pohja CPstä. Jos jengillä on
-                                // sitä turvaa vastaava erikoisuus, se kumoaa sen turvallisuuden/CPn.
-                                // Hyökkäyksessä verrataan jengin ja kohteen CPn suhdetta toisiinsa
-                                // esim: Jengi cp: 1000 ja kaupan CP on 500 niin olkoon siinä tapauksessa
-                                // todennäköisyys onnistua hyökkäyksessä (1000J_CP-500K_CP) / 25 = 20 eli 20% mahdollisuus onnistua?
-                                // Jos hyökkäys epäonnistuu: Jokaisen jäsenen kohdalla 15% mahdollisuus "kuolla"
-                                // Kohteen tilanne (CP/Rahat) pysyy samana.
-                                // Jos hyökkäys onnistuu: Jokaisen jäsenen kohdalla 4% mahdollisuus "kuolla" ja
-                                // 65%-100% osuus kohteen rahoista. Kohteen vaikeustaso nousee (lisää rahaa, cp, turvallisuutta)
-                                // Missä poliisit? Mites jos tehdään niin että poliisit tulevat peliin kun maine nousee n. 10000 hujakoille?
-                                // Poliisit tekevät satunnaisia ratsioita jengin kimppuun aina loopin lopussa. Ratsiat voivat aiheuttaa rahan menetystä
-                                // ja jengin menetystä. Poliisiasemalle tehty onnistunut hyökkäys estää poliiseja toimimasta n 5-10 erän ajaksi.
-                                // Ota talteen kohteen CP turvallisuuden aiheuttamia muutoksia varten 
-                                int kohdeCP = kohde.getPankit().get(syöteInt - 1).getCombatPower();
-                                // Vertaa rikollisten erikoisuudet, kohteiden turvallisuuteen:
-                                String[] kohteidenTurvallisuudet = kohde.getPankit().get(syöteInt - 1).getTurvallisuus();
-                                int eiVastaavaaErikoisuutta = 0;
-                                for (int i = 0; i < kohteidenTurvallisuudet.length; i++) {
-                                    if (!rikolliset.getErikoisuudet().contains(kohteidenTurvallisuudet[i])) {
-                                        ++eiVastaavaaErikoisuutta;
-                                    }
-
+                            // Hyökkäyksen toiminnallisuus:
+                            // Eli kohteen turva lisää kohteen CPseen vaikka 20% pohja CPstä. Jos jengillä on
+                            // sitä turvaa vastaava erikoisuus, se kumoaa sen turvallisuuden/CPn.
+                            // Hyökkäyksessä verrataan jengin ja kohteen CPn suhdetta toisiinsa
+                            // esim: Jengi cp: 1000 ja kaupan CP on 500 niin olkoon siinä tapauksessa
+                            // todennäköisyys onnistua hyökkäyksessä (1000J_CP-500K_CP) / 25 = 20 eli 20% mahdollisuus onnistua?
+                            // Jos hyökkäys epäonnistuu: Jokaisen jäsenen kohdalla 15% mahdollisuus "kuolla"
+                            // Kohteen tilanne (CP/Rahat) pysyy samana.
+                            // Jos hyökkäys onnistuu: Jokaisen jäsenen kohdalla 4% mahdollisuus "kuolla" ja
+                            // 65%-100% osuus kohteen rahoista. Kohteen vaikeustaso nousee (lisää rahaa, cp, turvallisuutta)
+                            // Missä poliisit? Mites jos tehdään niin että poliisit tulevat peliin kun maine nousee n. 10000 hujakoille?
+                            // Poliisit tekevät satunnaisia ratsioita jengin kimppuun aina loopin lopussa. Ratsiat voivat aiheuttaa rahan menetystä
+                            // ja jengin menetystä. Poliisiasemalle tehty onnistunut hyökkäys estää poliiseja toimimasta n 5-10 erän ajaksi.
+                            // Ota talteen kohteen CP turvallisuuden aiheuttamia muutoksia varten 
+                            int kohdeCP = kohde.getPankit().get(syöteInt - 1).getCombatPower();
+                            // Vertaa rikollisten erikoisuudet, kohteiden turvallisuuteen:
+                            String[] kohteidenTurvallisuudet = kohde.getPankit().get(syöteInt - 1).getTurvallisuus();
+                            int eiVastaavaaErikoisuutta = 0;
+                            for (int i = 0; i < kohteidenTurvallisuudet.length; i++) {
+                                if (!rikolliset.getErikoisuudet().contains(kohteidenTurvallisuudet[i])) {
+                                    ++eiVastaavaaErikoisuutta;
                                 }
-                                // Jos rikollisilla ei ole erikoisuutta kohteen turvallisuutta vastaan
-                                // kohteen CP kasvaa 200:lla per puuttuva erikoisuus
-                                kohdeCP += 200 * eiVastaavaaErikoisuutta;
-                                
-                                // Tässä kohtaa tapahtuu itse "hyökkäys" vertaamalla CP arvoja:
-                                // Eli tässä lasketaan CPt ja niistä saadusta arvosta saamme tietää
-                                // prosentuaalisen mahdollisuuden hyökkäyksen onnistumiseen.
-                                // Pitää kehittää joku random systeemi johon voi syöttää saatu muuttuja
-                                // ja se palauttaa arvon siihen todennäköisyyteen nähden? ... käyn kaupassa brb.
-                                
-                            
+
+                            }
+                            // Jos rikollisilla ei ole erikoisuutta kohteen turvallisuutta vastaan
+                            // kohteen CP kasvaa 200:lla per puuttuva erikoisuus
+                            kohdeCP += 200 * eiVastaavaaErikoisuutta;
+
+                            // Tässä kohtaa tapahtuu itse "hyökkäys" vertaamalla CP arvoja:
+                            // Eli tässä lasketaan CPt ja niistä saadusta arvosta saamme tietää
+                            // prosentuaalisen mahdollisuuden hyökkäyksen onnistumiseen.
+                            // Pitää kehittää joku random systeemi johon voi syöttää saatu muuttuja
+                            // ja se palauttaa arvon siihen todennäköisyyteen nähden? ... käyn kaupassa brb.
                             break;
                         // Tulostaa marketti kohteet
                         case 2:
+                            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + " | "
+                                    + "Jäseniä: " + rikolliset.getJäsenet().size() + " | Erikoisuudet: " + rikolliset.getErikoisuudet().toString() + "\n");
                             UI.näytäln("\nMarketit:");
                             UI.näytä(kohde.toString("marketit"));
                             UI.näytäln("0. Poistu");
-                            UI.näytä("Hyökkää kohteeseen (1-"+ kohde.getMarketit().size() +"): ");
-                            //hyökkäys shaibaa, saa poistaa
+                            UI.näytä("Hyökkää kohteeseen (1-" + kohde.getMarketit().size() + "): ");
+                            syöteInt = UI.lueInt();
+
                             if (syöteInt == 0) {
+                                UI.clear();
                                 break;
                             }
 
                             if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.clear();
                                 UI.näytäln("Virheellinen valinta");
                                 break;
-                            } else {}
-                            break;
+                            }
                         // Tulostaa vankila kohteet
                         case 3:
+                            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + " | "
+                                    + "Jäseniä: " + rikolliset.getJäsenet().size() + " | Erikoisuudet: " + rikolliset.getErikoisuudet().toString() + "\n");
                             UI.näytäln("\nVankilat:");
                             UI.näytä(kohde.toString("vankilat"));
                             UI.näytäln("0. Poistu");
-                            UI.näytä("Hyökkää kohteeseen (1-"+ kohde.getVankilat().size() +"): ");
-                            //hyökkäys shaibaa, saa poistaa
+                            UI.näytä("Hyökkää kohteeseen (1-" + kohde.getVankilat().size() + "): ");
+                            syöteInt = UI.lueInt();
+
                             if (syöteInt == 0) {
+                                UI.clear();
                                 break;
                             }
 
                             if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.clear();
                                 UI.näytäln("Virheellinen valinta");
                                 break;
-                            } else {}
-                            break;
+                            }
                         case 4:
                             // Tulostaa kaikki kohteet
+                            UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + " | "
+                                    + "Jäseniä: " + rikolliset.getJäsenet().size() + " | Erikoisuudet: " + rikolliset.getErikoisuudet().toString() + "\n");
                             UI.näytäln(kohde.toString("kaikki"));
+                            UI.näytäln("0. Poistu");
+                            syöteInt = UI.lueInt();
+
+                            if (syöteInt == 0) {
+                                UI.clear();
+                                break;
+                            }
+
+                            if (syöteInt < 1 || syöteInt > kohde.getMAKSIMI_PER_KOHDE()) {
+                                UI.clear();
+                                UI.näytäln("Virheellinen valinta");
+                                break;
+                            }
                         case 0:
+                            UI.clear();
                             break;
                         default:
+                            UI.clear();
                             UI.näytäln("Valintaa ei löytynyt");
                             break;
-            }
+                    }
+                break;
                 case 2:
                     // Tulostaa kaikki rikollisisjengin tiedot
-                    UI.näytäln(rikolliset.toString());
+                    UI.näytäln("\n" + rikolliset.toString());
                     break;
                 case 3:
                     // Kauppa päivittyy kun yksi rikollinen on ostettu.
@@ -199,10 +244,14 @@ public class Kontrolleri {
             // Vankila-ajastin; kun vankilassa on rikollisia, jokaisen loopin jälkeen jäljellä oleva
             // vankila-aika -=1;
             vankila.vankilaTimer();
-            // Poliisien suorrittama ratsia, random tod.näk. arvoilla käydää läpi jokainen pelaajan
-            // rikollinen, joka sitten päätyy vankilaan tai ei.
-            UI.näytäln(poliisit.ratsia(rikolliset, vankila));
+        // Poliisien suorrittama ratsia, random tod.näk. arvoilla käydää läpi jokainen pelaajan
+        // rikollinen, joka sitten päätyy vankilaan tai ei.
+        UI.näytäln(poliisit.ratsia(rikolliset, vankila));
 
-        } while (!lopetaSimulaatio);
+    }
+    while (!lopetaSimulaatio
+
+
+);
     }
 }

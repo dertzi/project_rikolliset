@@ -97,13 +97,17 @@ public class Kontrolleri {
                                 // Tässä hyökätään kohteeseen
                                 UI.näytäln(hyökkäys(kohde.getPankit().get(syöteInt - 1), rikolliset));
                                 vankila.vankilaTimer();
-                                if (poliisitauko > 0){
-                                    poliisitauko -= 1;
-                                    UI.näytäln("Poliisilaitos on tauolla seuraavat "+ poliisitauko + " vuoroa.\n");
+                                if (rikolliset.getMaine() > 3200 & poliisitauko == 0) {
+                                    UI.näytäln(poliisit.ratsia(rikolliset, vankila));
+
                                 }
-                                
+                                if (poliisitauko > 0) {
+                                    poliisitauko -= 1;
+                                    UI.näytäln("Poliisilaitos on tauolla seuraavat " + poliisitauko + " vuoroa.\n");
+                                }
+
                             }
-                                break;
+                            break;
                         // Tulostaa marketti kohteet
                         case 2:
                             UI.näytäln("\n\nJengin tiedot:\nMaine: " + rikolliset.getMaine() + " | CP: " + rikolliset.getCombatPower() + " | Rahat: " + rikolliset.getRaha() + " | "
@@ -128,9 +132,13 @@ public class Kontrolleri {
                                 // Tässä hyökätään kohteeseen
                                 UI.näytäln(hyökkäys(kohde.getMarketit().get(syöteInt - 1), rikolliset));
                                 vankila.vankilaTimer();
-                                if (poliisitauko > 0){
+                                if (rikolliset.getMaine() > 3200 & poliisitauko == 0) {
+                                    UI.näytäln(poliisit.ratsia(rikolliset, vankila));
+
+                                }
+                                if (poliisitauko > 0) {
                                     poliisitauko -= 1;
-                                    UI.näytäln("Poliisilaitos on tauolla seuraavat "+ poliisitauko + " vuoroa.\n");
+                                    UI.näytäln("Poliisilaitos on tauolla seuraavat " + poliisitauko + " vuoroa.\n");
                                 }
                             }
                             break;
@@ -157,9 +165,13 @@ public class Kontrolleri {
                                 // Tässä hyökätään kohteeseen
                                 UI.näytäln(hyökkäys(kohde.getVankilat().get(syöteInt - 1), rikolliset));
                                 vankila.vankilaTimer();
-                                if (poliisitauko > 0){
+                                if (rikolliset.getMaine() > 3200 & poliisitauko == 0) {
+                                    UI.näytäln(poliisit.ratsia(rikolliset, vankila));
+
+                                }
+                                if (poliisitauko > 0) {
                                     poliisitauko -= 1;
-                                    UI.näytäln("Poliisilaitos on tauolla seuraavat "+ poliisitauko + " vuoroa.\n");
+                                    UI.näytäln("Poliisilaitos on tauolla seuraavat " + poliisitauko + " vuoroa.\n");
                                 }
                             }
                             break;
@@ -212,34 +224,34 @@ public class Kontrolleri {
                     break;
                 case 4:
                     // Tulostaa listan poliiseista
-                    UI.näytäln(poliisit.toString(rikolliset));                    
+                    UI.näytäln(poliisit.toString(rikolliset));
                     UI.näytäln("0. Poistu\n1. Hyökkää poliisilaitokseen\n");
                     UI.näytä("Valinta: ");
                     int input = UI.lueInt();
-                    
+
                     if (input == 0) {
                         break;
                     }
-                    
+
                     if (input == 1) {
                         int arvo = 1 + random.nextInt(2);
                         if (arvo == 1) {
-                            poliisitauko =  5;
+                            poliisitauko = 5;
                             UI.clear();
-                            UI.näytäln("Hyökkäys oli onnistunut! Poliisilaitos on tauolla seuraavat "+ poliisitauko + " vuoroa.\n");
+                            UI.näytäln("Hyökkäys oli onnistunut! Poliisilaitos on tauolla seuraavat " + poliisitauko + " vuoroa.\n");
                             break;
-                        }else if (arvo == 2) { 
-                            int rahaVähennys = rikolliset.getRaha()/4;
-                            rikolliset.setRaha(rikolliset.getRaha()-rahaVähennys);
+                        } else if (arvo == 2) {
+                            int rahaVähennys = rikolliset.getRaha() / 4;
+                            rikolliset.setRaha(rikolliset.getRaha() - rahaVähennys);
                             UI.clear();
                             UI.näytäln("Hyökkäys epäonnistui, rikollisjengisi menetti: -" + rahaVähennys + " rahaa.\n");
-                            poliisitauko = 0 ;
+                            poliisitauko = 0;
                             break;
                         }
-                    }else{
+                    } else {
                         UI.näytäln("Virheellinen valinta!");
                     }
-                    
+
                     break;
                 case 0:
                     lopetaSimulaatio = true;
@@ -255,20 +267,14 @@ public class Kontrolleri {
             // vankila-aika -=1;
             // Poliisien suorrittama ratsia, random tod.näk. arvoilla käydää läpi jokainen pelaajan
             // rikollinen, joka sitten päätyy vankilaan tai ei.
-            
-            
+
             if (rikolliset.getMaine() > 1200) {
-                
+
                 if (poliisitAktivoituu) {
                     UI.näytäln("Maineesi kasvaa vauhdilla! Poliisit alkavat tutkia toimintaasi!");
                     poliisitAktivoituu = false;
                 }
-                
-                if (rikolliset.getMaine() > 3200 & poliisitauko == 0) {
-                    UI.näytäln(poliisit.ratsia(rikolliset, vankila));
-  
-                }
-                
+
             }
         } while (!lopetaSimulaatio);
     }
@@ -296,27 +302,31 @@ public class Kontrolleri {
             merkkijono += "Kohteessa oli seuraavat turvat suojaamassa:\n| ";
             for (int i = 0; i < kohde.getTurvallisuus().length; i++) {
                 if (kohde.getTurvallisuus()[i] != null) {
-                merkkijono += kohde.getTurvallisuus()[i] + " | ";
+                    merkkijono += kohde.getTurvallisuus()[i] + " | ";
                 }
             }
-            
+
             boolean printOnce = true;
             for (int i = 0; i < rikolliset.getJäsenet().size(); i++) {
                 if (Math.random() <= 0.12) {
                     if (printOnce) {
-                        merkkijono+="\n\nMenetit seuraavat henkilöt paetessa:\n";
+                        merkkijono += "\n\nMenetit seuraavat henkilöt paetessa:\n";
                         printOnce = false;
                     }
-                    
+
                     merkkijono += rikolliset.getJäsenet().get(i) + "\n";
                     rikolliset.poistaJäsen(rikolliset.getJäsenet().get(i));
                 }
             }
         } else {
             // VOITTO TILANNE
+            if (kohde.getRaha() == 0) {
+                kohde.setNewRaha();
+            }
             merkkijono = "Voitit!\nVarastettu rahamäärä: " + kohde.getRaha();
             rikolliset.setRaha(rikolliset.getRaha() + kohde.getRaha());
             kohde.nostaVaikeutta();
+
         }
         return merkkijono;
     }

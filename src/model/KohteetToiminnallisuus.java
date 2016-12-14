@@ -48,6 +48,10 @@ public class KohteetToiminnallisuus {
             }
         }
     }
+    
+    public void setNewRaha(){
+        this.raha = (((5000 * this.vaikeustaso) + 897) / 2) * (this.random.nextInt(2) + 1);
+    }
 
     public int getCombatPower() {
         return combatPower;

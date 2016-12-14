@@ -34,7 +34,7 @@ public class KohteetToiminnallisuus {
     public void nostaVaikeutta() {
         ++this.vaikeustaso;
         this.combatPower = (((this.vaikeustaso * this.vaikeustaso) + 4) / 2) * (75 + this.random.nextInt(35));
-        this.raha = (((3000 * this.vaikeustaso) + 897) / 2) * this.random.nextInt(3);
+        this.raha = (((3000 * this.vaikeustaso) + 897) / 2) * (this.random.nextInt(2)+1);
         if (this.vaikeustaso < 8) {
             for (int i = 0; i < this.vaikeustaso - 1; i++) {
                 int randomValue;

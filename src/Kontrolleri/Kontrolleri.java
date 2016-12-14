@@ -97,7 +97,7 @@ public class Kontrolleri {
                                 // Tässä hyökätään kohteeseen
                                 UI.näytäln(hyökkäys(kohde.getPankit().get(syöteInt - 1), rikolliset));
                                 vankila.vankilaTimer();
-                                if (rikolliset.getMaine() > 3200 & poliisitauko == 0) {
+                                if (rikolliset.getMaine() > 1200 & poliisitauko == 0) {
                                     UI.näytäln(poliisit.ratsia(rikolliset, vankila));
 
                                 }
@@ -132,7 +132,7 @@ public class Kontrolleri {
                                 // Tässä hyökätään kohteeseen
                                 UI.näytäln(hyökkäys(kohde.getMarketit().get(syöteInt - 1), rikolliset));
                                 vankila.vankilaTimer();
-                                if (rikolliset.getMaine() > 3200 & poliisitauko == 0) {
+                                if (rikolliset.getMaine() > 1200 & poliisitauko == 0) {
                                     UI.näytäln(poliisit.ratsia(rikolliset, vankila));
 
                                 }
@@ -165,7 +165,7 @@ public class Kontrolleri {
                                 // Tässä hyökätään kohteeseen
                                 UI.näytäln(hyökkäys(kohde.getVankilat().get(syöteInt - 1), rikolliset));
                                 vankila.vankilaTimer();
-                                if (rikolliset.getMaine() > 3200 & poliisitauko == 0) {
+                                if (rikolliset.getMaine() > 1200 & poliisitauko == 0) {
                                     UI.näytäln(poliisit.ratsia(rikolliset, vankila));
 
                                 }
@@ -320,9 +320,6 @@ public class Kontrolleri {
             }
         } else {
             // VOITTO TILANNE
-            if (kohde.getRaha() == 0) {
-                kohde.setNewRaha();
-            }
             merkkijono = "Voitit!\nVarastettu rahamäärä: " + kohde.getRaha();
             rikolliset.setRaha(rikolliset.getRaha() + kohde.getRaha());
             kohde.nostaVaikeutta();

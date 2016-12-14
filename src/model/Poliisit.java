@@ -39,7 +39,7 @@ public class Poliisit {
             Rikollinen rikollinen = it.next();
             int value = 0;
             value = random.nextInt(100)+1;
-            if (value >= 90) {
+            if (value >= 97) {
                 String merkkijono = "";
                 int raha = rikolliset.getRaha();
                 if (raha > 0){
